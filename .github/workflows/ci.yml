@@ -55,8 +55,8 @@ jobs:
           python-version: "3.12"
       - name: Build sdist and wheel
         run: |
-          pip install -e ".[dev]" build
-          python -m build --no-isolation
+          python -m pip install build
+          python -m build
           python -c "import zipfile, pathlib; w=next(pathlib.Path('dist').glob('*.whl')); z=zipfile.ZipFile(w); assert any('native/simplex_core.cpp' in n for n in z.namelist()), sorted(z.namelist())[:40]"
 
   docs:
