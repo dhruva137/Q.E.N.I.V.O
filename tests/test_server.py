@@ -174,8 +174,14 @@ def test_pdhg_solve_carries_a_trace(live):
 
 
 # ------------------------------------------------------------------ crude valuation
+def _crude_engine():
+    """The cargo-price engine is a full-edition module. The public package records that it is absent."""
+    return pytest.importorskip("qenivo.workload.crude_value")
+
+
 def test_crude_value_display_matches_the_solved_objective(live):
     """The curve's value at today's price is the plan's displayed objective (planner units, with c0)."""
+    _crude_engine()
     req = live()
     key = "crude_blending"
     col = "c_0"
@@ -196,6 +202,7 @@ def test_curve_slope_is_the_cargo_volume(live, key, col):
 
     Ties the planner-unit transform, the price axis and the plan-change volumes to one identity.
     """
+    _crude_engine()
     p = builtin(key)
     rel = float(p.c[p.names()[1].index(col)]) != 0.0
     body = {"builtin": key, "column": col, "relative": rel, "t_lo": -0.3 if rel else 0.0, "t_hi": 0.3 if rel else 30.0}
@@ -212,6 +219,7 @@ def test_curve_slope_is_the_cargo_volume(live, key, col):
 
 
 def test_costless_cargo_needs_an_absolute_ray(live):
+    _crude_engine()
     req = live()
     code, out = post(req, "/api/crude-value", {"builtin": "williams", "column": "crude1"})
     assert code == 200 and "absolute" in out["error"]
@@ -283,7 +291,12 @@ def test_info_reports_edition_and_native_status(live):
     code, raw, _ = live()("GET", "/api/info")
     info = strict_json(raw)
     assert info["edition"] in ("public", "pro") and isinstance(info["native"]["simplex"], bool)
-    assert info["crude_valuation"] is True
+    try:
+        import qenivo.workload.crude_value  # noqa: F401
+        have_curve = True
+    except ImportError:
+        have_curve = False
+    assert info["crude_valuation"] is have_curve
     assert info["version"] and info["provenance"]["tripwires_installed"]
 
 
