@@ -1,0 +1,6 @@
+Package: qenivo
+Title: Call the Qenivo C ABI from R
+Version: 0.1.0
+Description: .Call wrappers that solve a linear program and a small mixed-integer program through the Qenivo C ABI.
+License: MIT
+NeedsCompilation: yes

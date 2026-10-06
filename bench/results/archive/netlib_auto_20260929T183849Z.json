@@ -1,0 +1,172 @@
+{
+ "meta": {
+  "utc": "2026-09-29T18:38:50+00:00",
+  "nirnay": "0.1.0",
+  "commit": "2e44c9e9962b6789b2af1f2d3a5b613ebe5c72bf",
+  "dirty": true,
+  "argv": [
+   "--set",
+   "netlib",
+   "--tol",
+   "1e-6",
+   "--time-limit",
+   "180",
+   "--jobs",
+   "3"
+  ],
+  "tol": 1e-06,
+  "time_limit": 180.0,
+  "engine": "auto",
+  "python": "3.13.11",
+  "numpy": "2.4.4",
+  "scipy": "1.15.2",
+  "highspy": "installed",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+  "cpu_count": 16,
+  "gpu": {},
+  "comparator_threads": 1
+ },
+ "runs": [
+  {
+   "instance": "adlittle",
+   "nirnay": {
+    "rows": 56,
+    "cols": 97,
+    "nnz": 383,
+    "read_time": 0.004792299998371163,
+    "solve_time": 0.15117000000100234,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 225494.96316238027,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "56 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 166,
+    "residuals": {
+     "objective": 225494.96316238027,
+     "dual_objective": 225494.9631623804,
+     "rel_primal": 5.557393690758571e-17,
+     "rel_dual": 9.938626161191079e-17,
+     "rel_gap": 2.5813229276170317e-16,
+     "max_rel": 2.5813229276170317e-16,
+     "primal_res": 1.6924373211720954e-13,
+     "dual_res": 1.0550660802406381e-12,
+     "gap": 1.1641532182693481e-10
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "56x97 vs 56x97"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "9.132e-17"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "9.803e-17"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "1.936e-16"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "225494.963162 vs 225494.963162"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 2.3423068999982206
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 225494.9631623803,
+    "time": 0.004627099999197526
+   },
+   "rel_obj_diff": 1.2906586019802026e-16
+  },
+  {
+   "instance": "afiro",
+   "nirnay": {
+    "rows": 27,
+    "cols": 32,
+    "nnz": 83,
+    "read_time": 0.003818699999101227,
+    "solve_time": 0.0373446999983571,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": -464.75314285714285,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "27 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 18,
+    "residuals": {
+     "objective": -464.75314285714285,
+     "dual_objective": -464.7531428571428,
+     "rel_primal": 3.1435103156100995e-17,
+     "rel_dual": 6.6644988872809294e-18,
+     "rel_gap": 6.108869948919607e-17,
+     "max_rel": 6.108869948919607e-17,
+     "primal_res": 2.6347629809804342e-14,
+     "dual_res": 7.359305870287707e-17,
+     "gap": 5.684341886080802e-14
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "27x32 vs 27x32"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "3.144e-17"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "6.664e-18"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "1.222e-16"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "-464.753142857 vs -464.753142857"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 2.3580973999996786
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": -464.75314285714285,
+    "time": 0.003030899999430403
+   },
+   "rel_obj_diff": 0.0
+  }
+ ]
+}

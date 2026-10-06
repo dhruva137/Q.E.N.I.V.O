@@ -1,0 +1,86 @@
+name: ci
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: "3.10"
+          - os: ubuntu-latest
+            python: "3.11"
+          - os: ubuntu-latest
+            python: "3.12"
+          - os: ubuntu-latest
+            python: "3.13"
+          - os: windows-latest
+            python: "3.12"
+          - os: macos-latest
+            python: "3.12"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install package
+        run: pip install -e ".[dev]"
+      - name: provenance - no solver package may be a dependency
+        run: >
+          python -c "import importlib.metadata as m;
+          d=[(r.split()[0] if r else '').lower() for r in (m.requires('qenivo') or [])];
+          bad={'highspy','gurobipy','cplex','xpress','mosek','ortools','pyscipopt','osqp','pulp'}&set(d);
+          assert not bad, bad"
+      - name: Lint
+        run: ruff check src tests
+      - name: Tests
+        run: python -m pytest -q
+      - name: CLI smoke
+        shell: bash
+        run: |
+          qenivo doctor
+          qenivo engines
+          qenivo info --json
+          qenivo completion bash | head -n 5
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build sdist and wheel
+        run: |
+          pip install -e ".[dev]" build
+          python -m build --no-isolation
+          python -c "import zipfile, pathlib; w=next(pathlib.Path('dist').glob('*.whl')); z=zipfile.ZipFile(w); assert any('native/simplex_core.cpp' in n for n in z.namelist()), sorted(z.namelist())[:40]"
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build docs
+        run: |
+          pip install -e ".[docs]"
+          mkdocs build --strict
+
+  bench-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Short CPU benchmark smoke
+        env:
+          QENIVO_NATIVE: "0"
+        run: |
+          pip install -e ".[dev]"
+          qenivo bench small --time-limit 5 --json --out bench/results/ci_small_smoke.json

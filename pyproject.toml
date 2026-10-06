@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qenivo"
+dynamic = ["version"]
+description = "Sovereign, certified optimisation engine for LP, MILP and convex QP, with GPU-batched what-if planning"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Dhruva P Gowda" }]
+keywords = ["optimization", "linear programming", "MILP", "QP", "GPU", "PDHG", "refinery planning", "certificates"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Operating System :: OS Independent",
+]
+dependencies = ["numpy>=1.24", "scipy>=1.10"]
+
+[project.optional-dependencies]
+gpu = ["cupy-cuda12x>=13"]
+server = ["fastapi>=0.110", "uvicorn>=0.27"]
+dev = [
+  "pytest>=7",
+  "ruff>=0.6",
+  "build>=1.0",
+  "hypothesis>=6.100",
+  "pytest-cov>=4",
+]
+docs = [
+  "mkdocs-material>=9.5",
+  "mkdocstrings[python]>=0.24",
+  "pymdown-extensions>=10",
+]
+# HiGHS is never a runtime dependency. Install only for bench/ comparator runs:
+#   pip install highspy
+
+[project.scripts]
+qenivo = "qenivo.cli:main"
+qenivo-desktop = "qenivo.desktop.app:main"
+qenivo-io = "qenivo.compat.shell:main"
+qenivo-shadow = "qenivo.compat.shadow:main"
+
+[project.urls]
+Homepage = "https://github.com/dhruva137/Q.E.N.I.V.O"
+Documentation = "https://dhruva137.github.io/Q.E.N.I.V.O/"
+Issues = "https://github.com/dhruva137/Q.E.N.I.V.O/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "qenivo.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+qenivo = [
+  "ui/*.html",
+  "ui/*.css",
+  "native/*.cpp",
+  "native/*.h",
+  "native/*.hpp",
+  "native/*/*.cpp",
+  "native/*/*.h",
+  "native/*/*.hpp",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Default suite stays offline and sovereignty-clean: network bench downloads pull
+# bench/run.py which may import highspy for comparator metadata.
+addopts = "-q -m \"not network and not nightly\""
+markers = [
+  "slow: longer runs",
+  "network: downloads benchmark instances",
+  "gpu: needs a CUDA device",
+  "nightly: full property and fuzz suite; the fast subset runs without this marker",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501", "E702"]
+
+[tool.ruff.lint.per-file-ignores]
+# `l` / `u` are the lower and upper bounds (and in crude_unloading the CDU index) in the notation
+# of the papers these modules implement; refinery.row() also takes `l` as a keyword argument.
+"src/qenivo/engines/cuts.py" = ["E741"]
+"src/qenivo/engines/ipm.py" = ["E741"]
+"src/qenivo/models/refinery.py" = ["E741"]
+"src/qenivo/models/industry_ext/crude_unloading.py" = ["E741"]

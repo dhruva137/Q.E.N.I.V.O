@@ -1,0 +1,1724 @@
+{
+ "25fv47": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 373834
+ },
+ "80bau3b": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1141232
+ },
+ "adlittle": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 16835
+ },
+ "afiro": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 3327
+ },
+ "agg": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 101394
+ },
+ "agg2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 165436
+ },
+ "agg3": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 165763
+ },
+ "bandm": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 93022
+ },
+ "beaconfd": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 114450
+ },
+ "blend": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 17538
+ },
+ "bnl1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 214176
+ },
+ "bnl2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 565836
+ },
+ "boeing1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 141143
+ },
+ "boeing2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 49117
+ },
+ "bore3d": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 52624
+ },
+ "brandy": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 72908
+ },
+ "capri": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 70064
+ },
+ "cycle": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 711928
+ },
+ "czprob": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 494506
+ },
+ "d2q06c": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1194691
+ },
+ "d6cube": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1406453
+ },
+ "degen2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 155696
+ },
+ "degen3": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 871149
+ },
+ "dfl001": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1465558
+ },
+ "e226": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 93963
+ },
+ "etamacro": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 96850
+ },
+ "fffff800": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 210313
+ },
+ "finnis": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 102076
+ },
+ "fit1d": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 497202
+ },
+ "fit1p": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 391101
+ },
+ "fit2d": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 4780670
+ },
+ "fit2p": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 2308581
+ },
+ "forplan": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 159718
+ },
+ "ganges": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 286767
+ },
+ "gfrd-pnc": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 132676
+ },
+ "greenbea": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1050444
+ },
+ "greenbeb": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1050540
+ },
+ "grow15": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 206654
+ },
+ "grow22": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 303275
+ },
+ "grow7": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 96229
+ },
+ "israel": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 81947
+ },
+ "kb2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 10368
+ },
+ "lotfi": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 37853
+ },
+ "maros": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 334301
+ },
+ "maros-r7": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 4892894
+ },
+ "modszk1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 142951
+ },
+ "nesm": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 639486
+ },
+ "perold": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 222857
+ },
+ "pilot": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1447076
+ },
+ "pilot.ja": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 592077
+ },
+ "pilot.we": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 367310
+ },
+ "pilot4": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 187371
+ },
+ "pilot87": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 2451962
+ },
+ "pilotnov": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 464041
+ },
+ "qap8": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 15543
+ },
+ "qap12": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 15543
+ },
+ "qap15": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 3513415
+ },
+ "recipe": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 30179
+ },
+ "sc105": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 11460
+ },
+ "sc205": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 22438
+ },
+ "sc50a": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 5390
+ },
+ "sc50b": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 4783
+ },
+ "scagr25": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 76874
+ },
+ "scagr7": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 21154
+ },
+ "scfxm1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 91527
+ },
+ "scfxm2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 183346
+ },
+ "scfxm3": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 275152
+ },
+ "scorpion": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 61658
+ },
+ "scrs8": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 138442
+ },
+ "scsd1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 104995
+ },
+ "scsd6": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 189457
+ },
+ "scsd8": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 380866
+ },
+ "sctap1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 76483
+ },
+ "sctap2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 298906
+ },
+ "sctap3": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 395351
+ },
+ "seba": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 202481
+ },
+ "share1b": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 42380
+ },
+ "share2b": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 25174
+ },
+ "shell": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 182825
+ },
+ "ship04l": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 279894
+ },
+ "ship04s": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 196734
+ },
+ "ship08l": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 561626
+ },
+ "ship08s": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 322730
+ },
+ "ship12l": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 716192
+ },
+ "ship12s": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 380528
+ },
+ "sierra": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 416119
+ },
+ "stair": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 131853
+ },
+ "standata": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 109588
+ },
+ "standgub": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 113767
+ },
+ "standmps": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 133521
+ },
+ "stocfor1": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 17050
+ },
+ "stocfor2": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 336970
+ },
+ "stocfor3": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 227964
+ },
+ "truss": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 46146
+ },
+ "tuff": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 150207
+ },
+ "vtp.base": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 44104
+ },
+ "wood1p": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 2217625
+ },
+ "woodw": {
+  "set": "netlib",
+  "ok": true,
+  "error": null,
+  "bytes": 1219749
+ },
+ "bgdbg1": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 67005
+ },
+ "bgetam": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 108976
+ },
+ "bgindy": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 2875908
+ },
+ "bgprtr": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 3957
+ },
+ "box1": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 46357
+ },
+ "ceria3d": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 710823
+ },
+ "chemcom": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 98674
+ },
+ "cplex1": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 487248
+ },
+ "cplex2": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 49439
+ },
+ "ex72a": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 35599
+ },
+ "ex73a": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 34884
+ },
+ "forest6": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 11040
+ },
+ "galenet": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 1234
+ },
+ "gosh": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 3659400
+ },
+ "gran": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 847623
+ },
+ "greenbea-infeas": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 1365635
+ },
+ "itest2": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 1098
+ },
+ "itest6": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 1414
+ },
+ "klein1": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 26376
+ },
+ "klein2": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 174438
+ },
+ "klein3": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 457146
+ },
+ "mondou2": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 116085
+ },
+ "pang": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 107991
+ },
+ "pilot4i": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 213180
+ },
+ "qual": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 90315
+ },
+ "reactor": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 138162
+ },
+ "refinery": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 88184
+ },
+ "vol1": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 90315
+ },
+ "woodinfe": {
+  "set": "netlib_infeas",
+  "ok": true,
+  "error": null,
+  "bytes": 9404
+ },
+ "ken-07": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 784748
+ },
+ "ken-11": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 4532462
+ },
+ "ken-13": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 8962314
+ },
+ "ken-18": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 32437532
+ },
+ "osa-07": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 6257310
+ },
+ "osa-14": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 13702609
+ },
+ "osa-30": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 26122039
+ },
+ "osa-60": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 60850665
+ },
+ "pds-02": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 905334
+ },
+ "pds-06": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 3521148
+ },
+ "pds-10": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 6006070
+ },
+ "pds-20": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 13008542
+ },
+ "cre-a": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 760554
+ },
+ "cre-b": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 12281975
+ },
+ "cre-c": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 676161
+ },
+ "cre-d": {
+  "set": "kennington",
+  "ok": true,
+  "error": null,
+  "bytes": 11684012
+ },
+ "AUG2D": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3672321
+ },
+ "AUG2DC": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3697121
+ },
+ "AUG2DCQP": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3236184
+ },
+ "AUG2DQP": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3215047
+ },
+ "AUG3D": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 547123
+ },
+ "AUG3DC": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 621524
+ },
+ "AUG3DCQP": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 550429
+ },
+ "AUG3DQP": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 476028
+ },
+ "BOYD1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 35121864
+ },
+ "BOYD2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 19079436
+ },
+ "CONT-050": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 761194
+ },
+ "CONT-100": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3072395
+ },
+ "CONT-101": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2277272
+ },
+ "CONT-200": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 12344795
+ },
+ "CONT-201": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 9084672
+ },
+ "CONT-300": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 20422072
+ },
+ "CVXQP1_L": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3069442
+ },
+ "CVXQP1_M": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 306442
+ },
+ "CVXQP1_S": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 30216
+ },
+ "CVXQP2_L": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2770467
+ },
+ "CVXQP2_M": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 276555
+ },
+ "CVXQP2_S": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 27239
+ },
+ "CVXQP3_L": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3386417
+ },
+ "CVXQP3_M": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 338093
+ },
+ "CVXQP3_S": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 33325
+ },
+ "DPKLO1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 67551
+ },
+ "DTOC3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2204717
+ },
+ "DUAL1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 140170
+ },
+ "DUAL2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 176409
+ },
+ "DUAL3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 237094
+ },
+ "DUAL4": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 111097
+ },
+ "DUALC1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 65153
+ },
+ "DUALC2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 54278
+ },
+ "DUALC5": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 74566
+ },
+ "DUALC8": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 133205
+ },
+ "EXDATA": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 39853257
+ },
+ "GENHS28": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2209
+ },
+ "GOULDQP2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 116699
+ },
+ "GOULDQP3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 164188
+ },
+ "HS118": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 4309
+ },
+ "HS21": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 461
+ },
+ "HS268": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1966
+ },
+ "HS35": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 536
+ },
+ "HS35MOD": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 576
+ },
+ "HS51": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 924
+ },
+ "HS52": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 887
+ },
+ "HS53": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1142
+ },
+ "HS76": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 902
+ },
+ "HUES-MOD": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 990184
+ },
+ "HUESTIS": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 990184
+ },
+ "KSIP": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 668827
+ },
+ "LASER": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 365086
+ },
+ "LISWET1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET10": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET11": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET12": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET4": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET5": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET6": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET7": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET8": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LISWET9": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1970315
+ },
+ "LOTSCHD": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2342
+ },
+ "MOSARQP1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 321313
+ },
+ "MOSARQP2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 183509
+ },
+ "POWELL20": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1720084
+ },
+ "PRIMAL1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 209258
+ },
+ "PRIMAL2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 303724
+ },
+ "PRIMAL3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 722917
+ },
+ "PRIMAL4": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 602995
+ },
+ "PRIMALC1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 74890
+ },
+ "PRIMALC2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 60491
+ },
+ "PRIMALC5": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 82449
+ },
+ "PRIMALC8": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 148964
+ },
+ "Q25FV47": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2568376
+ },
+ "QADLITTL": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 19727
+ },
+ "QAFIRO": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3474
+ },
+ "QBANDM": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 92690
+ },
+ "QBEACONF": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 113444
+ },
+ "QBORE3D": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 54444
+ },
+ "QBRANDY": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 73933
+ },
+ "QCAPRI": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 101694
+ },
+ "QE226": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 127906
+ },
+ "QETAMACR": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 259313
+ },
+ "QFFFFF80": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 277368
+ },
+ "QFORPLAN": {
+  "set": "maros",
+  "ok": false,
+  "error": "KeyError: 'DEDO3'",
+  "bytes": 186397
+ },
+ "QGFRDXPN": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 135579
+ },
+ "QGROW15": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 221314
+ },
+ "QGROW22": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 345247
+ },
+ "QGROW7": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 112807
+ },
+ "QISRAEL": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 106298
+ },
+ "QPCBLEND": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 20738
+ },
+ "QPCBOEI1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 153060
+ },
+ "QPCBOEI2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 53722
+ },
+ "QPCSTAIR": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 148484
+ },
+ "QPILOTNO": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 473147
+ },
+ "QPTEST": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 494
+ },
+ "QRECIPE": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 31398
+ },
+ "QSC205": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 23751
+ },
+ "QSCAGR25": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 79986
+ },
+ "QSCAGR7": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 21634
+ },
+ "QSCFXM1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 116835
+ },
+ "QSCFXM2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 221557
+ },
+ "QSCFXM3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 314871
+ },
+ "QSCORPIO": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 61773
+ },
+ "QSCRS8": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 140210
+ },
+ "QSCSD1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 130552
+ },
+ "QSCSD6": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 237763
+ },
+ "QSCSD8": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 518009
+ },
+ "QSCTAP1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 80533
+ },
+ "QSCTAP2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 321378
+ },
+ "QSCTAP3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 425753
+ },
+ "QSEBA": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 222207
+ },
+ "QSHARE1B": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 43032
+ },
+ "QSHARE2B": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 26722
+ },
+ "QSHELL": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1466024
+ },
+ "QSHIP04L": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 277202
+ },
+ "QSHIP04S": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 195362
+ },
+ "QSHIP08L": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1845792
+ },
+ "QSHIP08S": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 749032
+ },
+ "QSHIP12L": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 3006340
+ },
+ "QSHIP12S": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1017479
+ },
+ "QSIERRA": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 413921
+ },
+ "QSTAIR": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 167028
+ },
+ "QSTANDAT": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 137027
+ },
+ "S268": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1965
+ },
+ "STADAT1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 692015
+ },
+ "STADAT2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 692015
+ },
+ "STADAT3": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1384015
+ },
+ "STCQP1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1923161
+ },
+ "STCQP2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 1885472
+ },
+ "TAME": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 319
+ },
+ "UBH1": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 2586795
+ },
+ "VALUES": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 153036
+ },
+ "YAO": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 394350
+ },
+ "ZECEVIC2": {
+  "set": "maros",
+  "ok": true,
+  "error": null,
+  "bytes": 493
+ },
+ "nug08-3rd": {
+  "set": "gate",
+  "ok": true,
+  "error": null,
+  "bytes": 6072005
+ },
+ "savsched1": {
+  "set": "gate",
+  "ok": true,
+  "error": null,
+  "bytes": 118811983
+ },
+ "pds-100": {
+  "set": "gate",
+  "ok": true,
+  "error": null,
+  "bytes": 61306049
+ },
+ "rmine15": {
+  "set": "gate",
+  "ok": true,
+  "error": null,
+  "bytes": 80701590
+ },
+ "Linf_520c": {
+  "set": "gate",
+  "ok": true,
+  "error": null,
+  "bytes": 24667801
+ },
+ "cont1": {
+  "set": "gate",
+  "ok": true,
+  "error": null,
+  "bytes": 23348002
+ }
+}

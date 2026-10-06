@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-01",
+  "agent": "W10",
+  "branch": "w10-transfer",
+  "mode": "analysis_only",
+  "free_ram_gb_approx": 2,
+  "sources": {
+    "w01_stack_bench": "bench/results/stack_bench_2026-10-01.jsonl",
+    "w01_stack_bench_md": "bench/results/stack_bench_2026-10-01.md",
+    "cpu_lab": "not in this tree",
+    "gpu_lab": "not in this tree",
+    "a100_headline": "nirnay/bench/results/a100_evidence_run1/HEADLINE.md",
+    "a100_e3_batch": "nirnay/bench/results/a100_evidence_run1/e3_batch.jsonl",
+    "a100_env": "nirnay/bench/results/a100_evidence_run1/e0_env.jsonl",
+    "t4": "gpu_results/kaggle_t4_run1/epochzero_results/kaggle_t4_run1/T4.md",
+    "rtx5050_batch": "nirnay/bench/results/persistent_batch_rtx5050.jsonl",
+    "e6_overhead": "research/2026-10-01/gpu_lab/results/e6_overhead_profile.jsonl",
+    "hidden_alpha": "not in this tree",
+    "status": "not in this tree"
+  },
+  "hardware": {
+    "laptop": {
+      "gpu": "RTX 5050 Laptop",
+      "sms": 20,
+      "l2_mb": 32,
+      "dram_bandwidth_gb_s_measured": 246,
+      "fp64_tflops_measured": 0.107,
+      "fp32_tflops_measured": [6.1, 8.0],
+      "cpu_threads_bench": 16
+    },
+    "a100": {
+      "gpu": "NVIDIA A100-SXM4-80GB",
+      "sms": 108,
+      "l2_mb": 40,
+      "dram_bandwidth_tb_s_spec": [1.5, 2.0],
+      "fp64_tflops_spec": 9.7,
+      "cpu_count_colab": 12,
+      "note": "usable HBM to be re-measured in W11 preflight triad"
+    },
+    "t4": {
+      "gpus": [1, 2],
+      "ref_rows": "T4.md L4 S=256: 36.8s (1x) / 22.3s (2x) vs HiGHS 974.5s"
+    }
+  },
+  "calibration": {
+    "naive_bandwidth_factor": {
+      "formula": "BW_A100 / BW_laptop",
+      "value_range": [6.1, 8.1],
+      "mid": 7.0
+    },
+    "observed_batch_speedup_laptop_to_a100": [
+      {
+        "row": "L4 S=512 tol=1e-4 f64 launch",
+        "laptop_wall_s": 48.235,
+        "a100_wall_s": 13.658,
+        "factor": 3.53,
+        "sources": ["e6_overhead_profile.jsonl", "e3_batch.jsonl L4/S512"]
+      },
+      {
+        "row": "L4 S=128 tol=1e-4 f64 launch",
+        "laptop_wall_s": 14.167,
+        "a100_wall_s": 4.99,
+        "factor": 2.84,
+        "sources": ["e6 S=128", "e3_batch L4/S128"]
+      },
+      {
+        "row": "L4 S=512 cases_per_s",
+        "laptop": 10.6,
+        "a100": 37.5,
+        "factor": 3.54,
+        "source": "04_gpu_lab.md E5 table"
+      }
+    ],
+    "calibrated_bandwidth_wall_factor": {
+      "point": 3.5,
+      "interval": [2.8, 4.0],
+      "naive_relative_error_pct": 46,
+      "calibrated_holdout_error_pct": {
+        "L4_S128_if_use_3.5": 23,
+        "note": "within +-30% gate when using calibrated factor; naive 6-8x fails gate"
+      }
+    },
+    "t4_cross_check": {
+      "L4_S256_1xT4_s": 36.8,
+      "L4_S64_rtx5050_s": 7.27,
+      "note": "T4 ~ laptop class for batch; 2xT4 22.3s still far from A100 13.7s @S=512",
+      "L3_S256_1xT4_s": 7.9,
+      "L3_S256_rtx5050_s": 5.37
+    },
+    "fixed_overhead_share": {
+      "laptop_L4_S512_iter_kernel_pct": 80,
+      "laptop_L4_S128_iter_kernel_pct": 74,
+      "a100_expected_fixed_share_pct": [20, 35],
+      "branch_if_kernels_below_pct": 70,
+      "action": "shift to host-side fixes; document in HEADLINE"
+    },
+    "fp64_compute_factor": {
+      "spec": 90,
+      "use_until_validated": [30, 90],
+      "status": "unvalidated_pending_W05_W06"
+    },
+    "cpu_factor": {
+      "point": 1.0,
+      "interval": [0.7, 1.2],
+      "note": "algorithmic ratios (pivot counts, zp%) transfer 1:1"
+    }
+  },
+  "laptop_rows_key": {
+    "w01_L3_S64": [
+      {"kind": "one_crude", "qenivo_warm_s": 5.46, "highs_cold_s": 41.81, "highs_warm_s": 5.21, "zp_pct": 57.8, "beats_warm": false, "beats_cold": true},
+      {"kind": "cargo_menu", "qenivo_warm_s": 4.47, "highs_cold_s": 38.38, "highs_warm_s": 5.57, "zp_pct": 57.8, "beats_warm": true, "beats_cold": true},
+      {"kind": "one_unit", "qenivo_warm_s": 5.71, "highs_cold_s": 41.73, "highs_warm_s": 4.95, "zp_pct": 26.6, "beats_warm": false, "beats_cold": true},
+      {"kind": "factor_price", "qenivo_warm_s": 6.03, "highs_cold_s": 37.39, "highs_warm_s": 6.37, "zp_pct": 1.6, "beats_warm": true, "beats_cold": true},
+      {"kind": "factor_mixed", "qenivo_warm_s": 13.83, "highs_cold_s": 37.06, "highs_warm_s": 7.55, "zp_pct": 0.0, "beats_warm": false, "beats_cold": true},
+      {"kind": "independent", "qenivo_warm_s": 33.25, "highs_cold_s": 20.25, "highs_warm_s": 20.11, "zp_pct": 0.0, "beats_warm": false, "beats_cold": false}
+    ],
+    "rtx_batch_1e-4": [
+      {"level": 4, "S": 64, "gpu_s": 7.273, "highs_all_cores_s": 207.3, "speedup": 28.5},
+      {"level": 3, "S": 64, "gpu_s": 1.435, "highs_all_cores_s": 3.935, "speedup": 2.74},
+      {"level": 3, "S": 256, "gpu_s": 5.374, "highs_all_cores_s": 14.17, "speedup": 2.64}
+    ],
+    "gpu04_highlights": {
+      "dram_gb_s": 246,
+      "persistent_us_iter_S1_f64": {"qap15": 29, "L4": 69, "L5": 103},
+      "f32_speedup_1e-4": {"L3": 2.3, "L4": 1.3},
+      "l2_tile_L4_f64_S1024": 1.51,
+      "fp16_storage_certified": "0/64"
+    }
+  },
+  "w11_eligible": [
+    {
+      "id": "C-BATCH-L4",
+      "rank": 1,
+      "predicted_a100_s": {"L4_S512_1e-4": 13.66, "L4_S1024_1e-4": [22, 30], "L4_S4096_1e-4": [70, 110]},
+      "regime": "bandwidth_bound_batch",
+      "factor_used": 3.5,
+      "confidence": 0.9,
+      "gpu_hours": [0.5, 1.0],
+      "comparator": "HiGHS cold all-cores; iid also beats CPU warm"
+    },
+    {
+      "id": "C-PERSIST-S1",
+      "rank": 2,
+      "predicted_a100_us_iter": {"qap15_f64": [10, 20], "L4_f64": [15, 35], "L5_f64": [20, 45]},
+      "regime": "latency_persistent",
+      "confidence": 0.7,
+      "gpu_hours": 0.25,
+      "comparator": "launch path; HiGHS for S=1 LPs"
+    },
+    {
+      "id": "C-STACK-CARGO",
+      "rank": 3,
+      "predicted_a100_ratio_vs_highs_warm": [1.1, 1.4],
+      "regime": "cpu_algorithmic",
+      "confidence": 0.85,
+      "gpu_hours": 0,
+      "comparator": "HiGHS warm"
+    },
+    {
+      "id": "C-STACK-FPRICE",
+      "rank": 4,
+      "predicted_a100_ratio_vs_highs_warm": [0.9, 1.3],
+      "regime": "cpu_algorithmic",
+      "confidence": 0.55,
+      "gpu_hours": 0,
+      "comparator": "HiGHS warm",
+      "note": "marginal on L3; L4 pending"
+    },
+    {
+      "id": "C-F32-CERT",
+      "rank": 5,
+      "predicted_ratio_vs_f64": [1.2, 1.8],
+      "regime": "byte_diet",
+      "confidence": 0.75,
+      "gpu_hours": 0.3,
+      "note": "research E4 confirmation only unless W04 gate passes"
+    },
+    {
+      "id": "C-L2-TILE",
+      "rank": 6,
+      "predicted_ratio_vs_untiled": [1.3, 1.6],
+      "regime": "l2_tiling",
+      "confidence": 0.8,
+      "gpu_hours": 0.1
+    }
+  ],
+  "w11_blocked": [
+    "B-ONE-CRUDE-WARM",
+    "B-ONE-UNIT",
+    "B-FACTOR-MIXED",
+    "B-INDEPENDENT-CPU",
+    "B-LARGE-LP-CUPDLPX",
+    "B-W07-MILP",
+    "B-ATLAS",
+    "B-FP16-A",
+    "B-CUSPARSE"
+  ],
+  "pending_laptop_gate": [
+    {"id": "P-W02-CRUDE", "work": "W02", "reason": "L3/L4 HiGHS midpoint gate open"},
+    {"id": "P-W04-DIET", "work": "W04", "reason": "held; no gpu_diet results"},
+    {"id": "P-W05-SSX", "work": "W05", "reason": "held; kill test not run"},
+    {"id": "P-W06-MP", "work": "W06", "reason": "held; mixed_precision results absent"},
+    {"id": "P-W01-L4", "work": "W01", "reason": "S=256/L4 stack_bench incomplete"},
+    {"id": "P-W03-ROUTER", "work": "W03", "reason": "not launched"}
+  ],
+  "preflight_probes": [
+    "bandwidth_triad_256MB",
+    "fp64_gemm",
+    "empty_launch_and_grid_sync_us",
+    "e6_overhead_profile_L4_S512",
+    "print_predictions_beside_parts"
+  ],
+  "gate": {
+    "calibration_within_30pct": "PASS using calibrated_bandwidth_wall_factor 3.5; FAIL if naive 6-8x used alone",
+    "w11_only_if_laptop_beats_comparator": true
+  }
+}

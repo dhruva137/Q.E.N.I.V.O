@@ -1,0 +1,30 @@
+QENIVO - sovereign, certified optimisation engine
+Copyright 2026 Dhruva P Gowda and the QENIVO contributors
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Methods implemented from published research (independent re-implementations; no code from
+these projects is included):
+  * Restarted Halpern PDHG with reflection - H. Lu and J. Yang, arXiv 2407.16144; the
+    engineering choices (preconditioning order, restart constants, PID primal weight) follow
+    cuPDLPx - H. Lu, Z. Peng, J. Yang, arXiv 2507.14051 (Apache-2.0 licence).
+  * PDQP for convex QP - H. Lu and J. Yang, arXiv 2311.07710.
+  * Infeasibility detection with PDHG - D. Applegate, M. Diaz, H. Lu, M. Lubin, Math. Programming 2023.
+  * Mehrotra predictor-corrector interior point - S. Mehrotra, SIAM J. Optim. 1992; S. Wright,
+    Primal-Dual Interior-Point Methods, SIAM 1997.
+  * Bounded-variable revised simplex, Harris ratio test - I. Maros, Computational Techniques of
+    the Simplex Method, 2003; R. Vanderbei, Linear Programming, 4th ed.
+  * McCormick envelopes - G. McCormick 1976; F. Al-Khayyal and J. Falk 1983.
+  * Distributive recursion / successive LP - C. Haverly 1978; R. Fletcher and E. Sainz de la Maza 1989;
+    W.-Y. Zhang et al., arXiv 2411.09554.
+
+Verification suite (original tests; the libraries are runners, not solvers):
+  * Property-based testing - K. Claessen and J. Hughes, QuickCheck, ICFP 2000.
+  * Metamorphic testing - T. Y. Chen, S. C. Cheung and S. M. Yiu, 1998.
+  * Differential testing - W. M. McKeeman, Digital Equipment Corp., 1998.
+  * Fuzzing of readers - B. P. Miller, L. Fredriksen and B. So, CACM 1990.
+
+Data included for tests: small Netlib LP models (netlib.org/lp/data, public domain).
+Benchmark data fetched at run time (not redistributed): Netlib, Kennington, Mittelmann LP test
+set, and the refinery-petrochemical planning benchmark of W. Du et al., arXiv 2503.22057
+(github.com/EMRPS/refinery-planning-benchmark).

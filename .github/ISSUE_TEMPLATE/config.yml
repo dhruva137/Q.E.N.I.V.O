@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/dhruva137/Q.E.N.I.V.O/security/policy
+    about: Please do not file public issues for vulnerabilities.

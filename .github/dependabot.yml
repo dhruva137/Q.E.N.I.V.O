@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Dev / docs tooling only — never auto-bump solve-path runtime deps.
+    allow:
+      - dependency-type: "development"
+    groups:
+      dev-tools:
+        patterns:
+          - "pytest*"
+          - "ruff*"
+          - "build*"
+          - "mkdocs*"
+          - "mkdocstrings*"
+          - "pymdown*"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"

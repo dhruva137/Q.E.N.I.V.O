@@ -1,0 +1,3 @@
+{"key": "a1/1790748878", "utc": "2026-09-30T06:14:38+00:00", "part": "a1", "status": "ok", "seconds": 544.3315811439999}
+{"key": "a5/1790758763", "utc": "2026-09-30T08:59:23+00:00", "part": "a5", "status": "failed: ValueError: array must not contain infs or NaNs", "seconds": 1782.9943237890002}
+{"key": "a8/1790762578", "utc": "2026-09-30T10:02:58+00:00", "part": "a8", "status": "ok", "seconds": 1413.023461525001}

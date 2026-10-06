@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QENIVO</title>
+<link rel="stylesheet" href="/tokens.css">
+<style>
+/* Layout for the lab landing and the workstation. Colour, type, and radius live in tokens.css.
+   Air-gapped: local font stacks only; the server CSP blocks remote style and script. */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:13.5px/1.5 var(--sans)}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#lab[hidden],#app[hidden]{display:none!important}
+#app{height:100%;position:relative}
+@media (prefers-reduced-motion:no-preference){
+  #app.is-in{animation:app-in 200ms ease}
+}
+@keyframes app-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.skip{position:absolute;left:12px;top:10px;z-index:20;padding:8px 12px;background:var(--surface);color:var(--text);border:1px solid var(--accent);border-radius:var(--radius-input);text-decoration:none;transform:translateY(-160%)}
+.skip:focus{transform:none}
+
+.lab{min-height:100%;display:flex;flex-direction:column;background-color:var(--paper);background-image:radial-gradient(circle,rgba(20,20,20,0.12) 1px,transparent 1.2px);background-size:14px 14px;color:var(--ink);font:16px/1.5 var(--ui)}
+.lab-bar{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:14px 24px;background:var(--paper);border-bottom:1px dashed var(--hair)}
+.lab-brand{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.16em}
+.lab-quiet{font-family:var(--mono);font-size:12px;color:var(--mute);justify-self:center}
+#enter{justify-self:end;background:var(--ink);color:var(--paper);border:0;border-radius:0;padding:10px 16px;font:600 13px/1 var(--ui);cursor:pointer;transition:background-color 180ms ease,transform 180ms ease}
+#enter:hover{background:var(--accent);transform:translateX(2px)}
+.lab-body{width:min(72rem,calc(100% - 3rem));margin:0 auto;padding:3.5rem 0 1.25rem}
+.lab h1{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(2.15rem,4.6vw,3.35rem);line-height:1.12;letter-spacing:-.01em;text-align:center;text-wrap:balance}
+.lab h1 em{font-style:italic;color:var(--accent);font-weight:500}
+.rule{display:block;width:4.5rem;height:1px;margin:1.15rem auto 0;background:var(--accent)}
+.lede{max-width:48rem;margin:1.1rem auto 0;text-align:center;color:var(--mute);font-size:1.05rem;line-height:1.55}
+.lab-frame{display:grid;grid-template-columns:20rem 1fr;margin-top:2.4rem;border:1px dashed var(--hair);background:var(--paper)}
+.lab-list{list-style:none;margin:0;padding:1.15rem 1.35rem;counter-reset:step;border-right:1px dashed var(--hair)}
+.lab-list li{display:flex;gap:.8rem;align-items:baseline;padding:.85rem 0;border-bottom:1px dashed var(--hair);color:var(--ink-2);font-size:.98rem}
+.lab-list li:last-child{border-bottom:0}
+.lab-list li::before{counter-increment:step;content:counter(step,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--mute);flex:none}
+.lab-stage-wrap{padding:1.15rem}
+.lab-stage{position:relative;overflow:hidden;min-height:16rem;display:flex;flex-direction:column;gap:.85rem;padding:1.2rem 1.3rem .95rem;border:1px dashed var(--hair);background:var(--paper-2)}
+.lab-stage-top{display:flex;align-items:center;gap:14px}
+.seal-draw{width:58px;height:58px;flex:none}
+.seal-ring,.seal-tick{fill:none;stroke-linecap:square}
+.seal-ring{stroke:var(--accent);stroke-width:1.4}
+.seal-tick{stroke:var(--ink);stroke-width:1.7}
+.lab-stage h2{margin:0;font-family:var(--display);font-weight:500;font-size:1.45rem}
+.lab-kicker{margin:.15rem 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--mute)}
+.lab-steps{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}
+.lab-steps li{margin:0;color:var(--ink-2);padding-left:.85rem;border-left:1px solid var(--hair)}
+.lab-stage .lab-status{margin-top:auto;padding-top:.4rem;font-family:var(--mono);font-size:12px;color:var(--mute)}
+.caret{display:inline-block;width:7px;height:1em;margin-left:2px;vertical-align:-2px;background:var(--accent)}
+.scan{position:absolute;left:0;top:0;width:38%;height:100%;background:linear-gradient(90deg,transparent,rgba(200,16,46,.08),transparent);pointer-events:none}
+.lab-foot{margin:0;padding:0 1rem 1.75rem;text-align:center;color:var(--mute);font-size:13px}
+@media (prefers-reduced-motion:no-preference){
+  .lab-bar{animation:rise .55s both}
+  .lab h1{animation:rise .7s .08s both}
+  .lab h1 em{animation:ink-crimson .8s .55s both}
+  .rule{transform-origin:center;animation:grow .7s .4s both}
+  .lede{animation:rise .7s .2s both}
+  .lab-frame{animation:rise .8s .32s both}
+  .lab-list li{animation:rise .55s both}
+  .lab-list li:nth-child(1){animation-delay:.48s}
+  .lab-list li:nth-child(2){animation-delay:.58s}
+  .lab-list li:nth-child(3){animation-delay:.68s}
+  .lab-list li:nth-child(4){animation-delay:.78s}
+  .seal-ring{stroke-dasharray:140;stroke-dashoffset:140;animation:draw 1.05s ease .7s forwards}
+  .seal-tick{stroke-dasharray:42;stroke-dashoffset:42;animation:draw .45s ease 1.45s forwards}
+  .lab-steps li{animation:rise .5s both}
+  .lab-steps li:nth-child(1){animation-delay:.85s}
+  .lab-steps li:nth-child(2){animation-delay:1s}
+  .lab-steps li:nth-child(3){animation-delay:1.15s}
+  .scan{animation:sweep 2.6s ease-in-out 1.5s 1}
+  .caret{animation:blink 1s steps(1) 4}
+}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes ink-crimson{from{color:var(--ink)}to{color:var(--accent)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes sweep{from{transform:translateX(-120%)}to{transform:translateX(320%)}}
+@keyframes blink{50%{opacity:0}}
+@media (max-width:760px){
+  .lab-bar{grid-template-columns:1fr auto;padding:12px 16px}
+  .lab-quiet{display:none}
+  .lab-body{width:min(72rem,calc(100% - 1.5rem));padding-top:2.25rem}
+  .lab-frame{grid-template-columns:1fr}
+  .lab-list{border-right:0;border-bottom:1px dashed var(--hair)}
+}
+
+.top{display:flex;align-items:center;gap:12px;height:52px;padding:0 18px;background:var(--chassis);border-bottom:1px solid var(--line)}
+.mark{display:flex;align-items:center;gap:10px}
+.mark b{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.14em}
+.mark small{font:11px var(--mono);color:var(--muted);letter-spacing:.06em}
+.grow{flex:1}
+.chip{display:inline-flex;align-items:center;gap:6px;font:11px var(--mono);padding:3px 9px;border:1px solid var(--line);border-radius:4px;color:var(--muted);background:var(--surface);white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--dim);flex:none}
+.chip.ok{background:var(--ok-weak);color:var(--ok);border-color:transparent}
+.chip.bad{background:var(--bad-weak);color:var(--bad);border-color:transparent}
+.chip.warn{background:var(--warn-weak);color:var(--warn);border-color:transparent}
+.chip.sig{background:var(--info-weak);border-color:transparent}
+.chip.ok .dot{background:var(--ok)} .chip.bad .dot{background:var(--bad)} .chip.sig .dot{background:var(--info)} .chip.warn .dot{background:var(--warn)}
+.shell{display:grid;grid-template-columns:208px 1fr;height:calc(100% - 52px)}
+.rail{background:var(--chassis);border-right:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;gap:2px}
+.rail .cap{font:10px var(--mono);letter-spacing:.12em;color:var(--dim);padding:10px 10px 6px;text-transform:uppercase}
+.rail button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:9px 10px;border-radius:var(--radius-input);cursor:pointer;color:var(--muted);text-align:left}
+.rail button svg{width:16px;height:16px;flex:none}
+.rail button:hover{background:var(--panel2);color:var(--ink)}
+.rail button[aria-current="true"]{background:var(--sig-dim);color:var(--ink);box-shadow:inset 2px 0 0 var(--sig)}
+.rail .foot{margin-top:auto;font:11px var(--mono);color:var(--dim);padding:10px;line-height:1.6}
+main{overflow:auto;padding:18px 20px 28px;display:grid;gap:14px;align-content:start;min-width:0}
+main:focus{outline:none}
+main:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);min-width:0}
+.panel > header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.panel > header h2{margin:0;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.body{padding:14px}
+.stack{display:grid;gap:14px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.hidden{display:none!important}
+.modelbar{display:flex;align-items:center;gap:14px;padding:10px 14px}
+.modelbar .t{font:600 13px var(--mono)} .modelbar .s{color:var(--muted);font:11.5px var(--mono)}
+.drop{border:1px dashed var(--line);border-radius:var(--radius-input);padding:16px;display:flex;gap:14px;align-items:center;background:var(--panel2);cursor:pointer}
+.drop.over{border-color:var(--sig);background:var(--sig-dim)}
+.drop svg{width:26px;height:26px;color:var(--sig);flex:none}
+.drop .t{font-weight:600}.drop .s{color:var(--muted);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--line);background:var(--panel2);border-radius:var(--radius);padding:13px 14px;cursor:pointer;text-align:left;display:grid;gap:4px}
+.card:hover{border-color:var(--sig)}
+.card b{font:600 13px var(--mono)} .card span{color:var(--muted);font-size:12px} .card small{font:10.5px var(--mono);color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.card[aria-pressed="true"]{border-color:var(--sig);background:var(--sig-dim)}
+.ctrl{display:grid;gap:12px}
+.field{display:grid;gap:5px;min-width:0}
+.field > span{font:10.5px var(--mono);letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.seg{display:flex;border:1px solid var(--line);border-radius:var(--radius-input);overflow:hidden}
+.seg button{flex:1;border:0;background:var(--surface);padding:6px 8px;cursor:pointer;color:var(--muted);font:12px var(--mono);border-right:1px solid var(--line);white-space:nowrap}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--sig-dim);color:var(--ink)}
+select,input[type=text],input[type=number]{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-input);padding:6px 8px;font:12.5px var(--mono)}
+input[type=range]{width:100%;accent-color:var(--sig)}
+input[type=file]{font:12px var(--mono);color:var(--muted)}
+textarea{width:100%;min-height:150px;resize:vertical;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-input);padding:8px;font:12.5px var(--mono)}
+.run{display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--sig);background:var(--sig);color:#fff;padding:10px 16px;border-radius:var(--radius-input);font:600 13px var(--sans);cursor:pointer}
+.run:hover{background:#a50d26;border-color:#a50d26}
+.run[disabled]{opacity:.55;cursor:progress}
+.ghost{border:1px solid var(--line);background:var(--surface);border-radius:var(--radius-input);padding:6px 11px;cursor:pointer;font:12px var(--sans);color:var(--muted)}
+.ghost:hover{color:var(--ink);border-color:var(--sig)}
+.note{margin:0;color:var(--muted);font-size:12.5px}
+.verdict{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+.seal{width:84px;height:84px}
+.vtext{font:700 26px var(--mono);letter-spacing:.08em}
+.vtext.optimal{color:var(--ok)} .vtext.infeasible,.vtext.unbounded{color:var(--amber)} .vtext.not_proven{color:var(--bad)}
+.obj{font:500 13px var(--mono);color:var(--muted)} .obj b{color:var(--ink);font-size:18px;font-variant-numeric:tabular-nums}
+.hash{font:11px var(--mono);color:var(--dim);word-break:break-all}
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:14px}
+.kpi{background:var(--panel2);padding:9px 11px;min-width:0}
+.kpi span{display:block;font:10px var(--mono);letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+.kpi b{display:block;font:600 14px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gauge{height:4px;background:var(--line);border-radius:2px;margin-top:6px;overflow:hidden}
+.gauge i{display:block;height:100%}
+.pipe{display:flex;margin-top:14px;overflow-x:auto}
+.stage{flex:1;min-width:150px;border:1px solid var(--line);background:var(--panel2);padding:9px 11px}
+.stage + .stage{border-left:0}
+.stage span{display:block;font:10px var(--mono);letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.stage b{display:block;font:600 12.5px var(--mono);margin-top:2px}
+.stage small{display:block;color:var(--muted);font-size:11.5px;margin-top:3px}
+.stage.on{box-shadow:inset 0 2px 0 var(--sig)} .stage.pass{box-shadow:inset 0 2px 0 var(--ok)} .stage.fail{box-shadow:inset 0 2px 0 var(--bad)}
+.scroll{overflow:auto;max-height:330px}
+table{border-collapse:collapse;width:100%;font:12px var(--mono);font-variant-numeric:tabular-nums}
+th,td{padding:5px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{position:sticky;top:0;background:var(--panel);color:var(--dim);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+td.n,th.n{text-align:right}
+td.wrap{white-space:normal;min-width:220px}
+.bar{position:relative;height:8px;background:var(--line);border-radius:2px;min-width:90px}
+.bar i{position:absolute;top:0;bottom:0;background:var(--sig);border-radius:2px}
+.bar i.neg{background:var(--amber)} .bar i.hot{background:var(--amber)}
+canvas{width:100%;height:220px;display:block}
+.legend{display:flex;gap:14px;font:11px var(--mono);color:var(--muted);margin-top:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:3px;margin-right:6px;vertical-align:middle}
+.empty{color:var(--dim);font:12px var(--mono);padding:24px;text-align:center}
+.checks{display:grid;gap:6px}
+.check{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;font:12.5px var(--mono);padding:7px 10px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-input)}
+.check > span:nth-child(2){overflow-wrap:anywhere}
+.lamp{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none;background:var(--dim)}
+.lamp.pass{background:var(--ok)} .lamp.fail{background:var(--bad)}
+.badge{display:inline-flex;align-items:center;gap:6px;font:600 10.5px var(--mono);letter-spacing:.08em;padding:2px 7px;border-radius:4px;border:1px solid var(--line)}
+.badge.pass{color:var(--ok);background:var(--ok-weak);border-color:transparent} .badge.fail{color:var(--bad);background:var(--bad-weak);border-color:transparent}
+.curve{position:relative}
+.curve svg{width:100%;height:340px;display:block;touch-action:none;cursor:ew-resize;user-select:none}
+.readout{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:12px}
+.readout div{background:var(--panel2);padding:9px 11px;min-width:0}
+.readout span{display:block;font:10px var(--mono);letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
+.readout b{display:block;font:600 14px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.facts{display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 16px;font:12.5px var(--mono)}
+.facts dt{color:var(--dim);text-transform:uppercase;letter-spacing:.08em;font-size:10.5px;padding-top:2px}
+.facts dd{margin:0;overflow-wrap:anywhere}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--panel);border:1px solid var(--bad);color:var(--ink);padding:10px 14px;border-radius:var(--radius);font:12.5px var(--mono);max-width:520px;box-shadow:0 10px 30px -12px rgba(20,20,20,.45)}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))} .grid3{grid-template-columns:1fr} .readout{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){.shell{grid-template-columns:1fr;height:auto} .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)} .rail .cap,.rail .foot{display:none} .rail button{white-space:nowrap}
+  .grid2{grid-template-columns:1fr} .verdict{grid-template-columns:auto 1fr} .mark small,.top .chip:not(#c-guard){display:none} .facts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="lab" class="lab">
+  <header class="lab-bar">
+    <div class="lab-brand">QENIVO</div>
+    <div class="lab-quiet">local console</div>
+    <button type="button" id="enter">Try QENIVO →</button>
+  </header>
+  <div class="lab-body">
+    <h1>A <em>certified</em> answer for every plan</h1>
+    <span class="rule" aria-hidden="true"></span>
+    <p class="lede">QENIVO solves a linear or mixed-integer model on this machine and returns a proof with the decision.</p>
+    <div class="lab-frame">
+      <ol class="lab-list">
+        <li>Solve and certify</li>
+        <li>Check the certificate again</li>
+        <li>Explain an infeasible plan</li>
+        <li>Price a cargo, then run what-if cases</li>
+      </ol>
+      <div class="lab-stage-wrap">
+        <div class="lab-stage">
+          <i class="scan" aria-hidden="true"></i>
+          <div class="lab-stage-top">
+            <svg class="seal-draw" viewBox="0 0 64 64" aria-hidden="true">
+              <circle class="seal-ring" cx="32" cy="32" r="22"/>
+              <path class="seal-tick" d="M22 33.5l6.5 6.5 14-16"/>
+            </svg>
+            <div>
+              <h2>This console</h2>
+              <p class="lab-kicker">proof, then the decision</p>
+            </div>
+          </div>
+          <ol class="lab-steps">
+            <li>The model stays on this machine.</li>
+            <li>A verdict is optimal only when the check passes.</li>
+            <li>Open the workstation to run the sample.</li>
+          </ol>
+          <p class="lab-status">local · no network solve<i class="caret" aria-hidden="true"></i></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="lab-foot">Local only. No data leaves this machine.</p>
+</div>
+<div id="app" hidden>
+<a class="skip" href="#main">Skip to content</a>
+<div class="top">
+  <div class="mark">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><polygon points="13,1.5 23.5,7.5 23.5,18.5 13,24.5 2.5,18.5 2.5,7.5" fill="none" stroke="var(--sig)" stroke-width="1.6"/><circle cx="13" cy="13" r="4.2" fill="var(--sig)"/><circle cx="13" cy="13" r="7.4" fill="none" stroke="var(--sig)" stroke-opacity=".45"/></svg>
+    <b>QENIVO</b><small>Certified optimisation workstation</small>
+  </div>
+  <span class="grow"></span>
+  <span class="chip" id="c-dev"><span class="dot"></span><span>device …</span></span>
+  <span class="chip" id="c-native"><span class="dot"></span><span>native …</span></span>
+  <span class="chip" id="c-guard"><span class="dot"></span><span>provenance …</span></span>
+  <span class="chip" id="c-ver"><span class="dot"></span><span>v…</span></span>
+  <button class="ghost" id="theme" aria-label="Switch light or dark theme">◐</button>
+</div>
+<div class="shell">
+<nav class="rail" aria-label="Workspaces">
+  <div class="cap">Workspaces</div>
+  <button data-tab="home" aria-current="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 7.5L8 2.5l6 5"/><path d="M3.5 6.5V13.5h9V6.5"/></svg>Home</button>
+  <button data-tab="solve"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 13l4-5 3 3 5-7"/><circle cx="14" cy="4" r="1.2"/></svg>Solve &amp; certify</button>
+  <button data-tab="value"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12l4-4 3 2 5-6"/><path d="M11 3h3v3"/></svg>Crude valuation</button>
+  <button data-tab="cases"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="3" width="12" height="3"/><rect x="2" y="7" width="12" height="3"/><rect x="2" y="11" width="12" height="3"/></svg>What-if cases</button>
+  <button data-tab="explain"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 4.5v4.5M8 11v.5"/></svg>Why infeasible?</button>
+  <button data-tab="range"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M4 5v6M12 5v6"/></svg>Sensitivity</button>
+  <button data-tab="verify"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 1.5l5 2v4c0 3-2.2 5.3-5 7-2.8-1.7-5-4-5-7v-4z"/><path d="M5.5 8l2 2 3-3.5"/></svg>Verify certificate</button>
+  <button data-tab="about"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M8 7v4.5M8 4.6v.4"/></svg>About &amp; sovereignty</button>
+  <div class="foot">Local only · loopback<br>No data leaves this machine.</div>
+</nav>
+<main id="main" tabindex="-1">
+  <div class="panel" id="modelbar"><div class="modelbar">
+    <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="var(--sig)" stroke-width="1.4" aria-hidden="true"><rect x="2" y="2.5" width="12" height="11" rx="1"/><path d="M2 6h12M6 6v7.5"/></svg>
+    <div style="min-width:0"><div class="t" id="mb-name">No model loaded</div><div class="s" id="mb-info">Choose a built-in model on Home, or open an MPS / GAMS file</div></div>
+    <span class="grow"></span><button class="ghost" data-goto="home">Change model</button>
+  </div></div>
+
+  <section data-panel="home" class="stack">
+    <div class="panel"><header><h2>Built-in planner models</h2><span class="grow"></span><span class="chip" id="cat-meta"><span class="dot"></span><span>loading…</span></span></header>
+      <div class="body"><div class="cards" id="cards"><div class="empty">Loading catalogue…</div></div></div></div>
+    <div class="grid2">
+      <div class="panel"><header><h2>Open a model file</h2><span class="grow"></span><button class="ghost" id="sample">Load MRPL-style sample</button></header>
+        <div class="body">
+          <label class="drop" id="drop"><input id="file" type="file" accept=".mps,.gms,.txt" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/></svg>
+            <div><div class="t">Drop an MPS or GAMS model</div><div class="s">or click to browse · read in this window, sent only to the local engine</div></div>
+          </label>
+          <textarea id="model" class="hidden" spellcheck="false" aria-label="Model text" style="margin-top:12px"></textarea>
+        </div></div>
+      <div class="panel"><header><h2>This workstation</h2></header><div class="body"><dl class="facts" id="home-facts"><dt>status</dt><dd>reading…</dd></dl></div></div>
+    </div>
+  </section>
+
+  <section data-panel="solve" class="stack hidden">
+    <div class="panel">
+      <header><h2>Engine</h2></header>
+      <div class="body ctrl">
+        <div class="grid3" style="gap:12px">
+          <div class="field"><span>Engine</span><div class="seg" id="seg-engine">
+            <button aria-pressed="true" data-v="auto">auto</button><button data-v="simplex">simplex</button><button data-v="ipm">ipm</button><button data-v="pdhg">pdhg</button><button data-v="milp">milp</button></div></div>
+          <div class="field"><span>Tolerance</span><div class="seg" id="seg-tol"><button data-v="1e-4">1e-4</button><button aria-pressed="true" data-v="1e-6">1e-6</button><button data-v="1e-8">1e-8</button></div></div>
+          <div class="field"><span>Device</span><div class="seg" id="seg-dev"><button aria-pressed="true" data-v="auto">auto</button><button data-v="numpy">cpu</button><button data-v="cupy">gpu</button></div></div>
+        </div>
+        <button class="run" id="go-solve"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg><span>Solve &amp; certify</span></button>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h2>Result</h2><span class="grow"></span><button class="ghost hidden" id="dl">Download certificate</button></header>
+      <div class="body" id="res-empty"><div class="empty">Load a model and press Solve &amp; certify.</div></div>
+      <div class="body hidden" id="res">
+        <div class="verdict">
+          <svg class="seal" viewBox="0 0 84 84" id="seal" role="img" aria-label="certificate seal"></svg>
+          <div style="min-width:0"><div class="vtext" id="v"></div><div class="obj" id="obj"></div><div class="hash" id="hash"></div></div>
+          <div class="obj" id="timing" style="text-align:right"></div>
+        </div>
+        <div class="kpis" id="kpis"></div>
+        <div class="pipe" id="pipe"></div>
+      </div>
+    </div>
+    <div class="grid3 hidden" id="plan">
+      <div class="panel"><header><h2>Crude slate</h2></header><div class="scroll"><table id="t-slate"></table></div></div>
+      <div class="panel"><header><h2>Unit utilisation</h2></header><div class="scroll"><table id="t-units"></table></div></div>
+      <div class="panel"><header><h2>Products</h2></header><div class="scroll"><table id="t-prod"></table></div></div>
+    </div>
+    <div class="panel hidden" id="limits"><header><h2>What limits the plan</h2><span class="grow"></span><span class="chip" id="lim-meta"><span class="dot"></span><span></span></span></header>
+      <div class="scroll" style="max-height:300px"><table id="t-limits"></table></div></div>
+    <div class="grid3 hidden" id="res-detail">
+      <div class="panel"><header><h2>Convergence</h2></header><div class="body"><canvas id="conv"></canvas><div class="legend"><span><i style="background:var(--sig)"></i>primal</span><span><i style="background:var(--amber)"></i>dual</span><span><i style="background:var(--ok)"></i>gap</span></div></div></div>
+      <div class="panel"><header><h2>Largest decisions</h2></header><div class="scroll"><table id="t-x"></table></div></div>
+      <div class="panel"><header><h2>Marginal values</h2></header><div class="scroll"><table id="t-y"></table></div></div>
+    </div>
+    <div class="panel hidden" id="diag"><header><h2>Diagnosis</h2></header><div class="body"><div class="checks" id="diag-list"></div></div></div>
+  </section>
+
+  <section data-panel="value" class="stack hidden">
+    <div class="panel"><header><h2>Value a cargo</h2><span class="grow"></span><span class="chip" id="value-meta"><span class="dot"></span><span>idle</span></span></header>
+      <div class="body ctrl">
+        <p class="note">An exact break-even curve for one cargo: how the plan's value moves as its price moves, every straight piece certified on its own, and the price at which the plan changes, with the reason. Drag across the curve to read any price.</p>
+        <div class="grid3" style="gap:12px">
+          <div class="field"><span>Crude grade</span><select id="v-grade"></select></div>
+          <div class="field"><span>Cargo column</span><select id="v-col"></select><input id="v-coltext" type="text" class="hidden" spellcheck="false" placeholder="column name"></div>
+          <div class="field"><span id="v-range-label">Price move ±20%</span><input id="v-range" type="range" min="5" max="50" step="5" value="20"></div>
+        </div>
+        <button class="run" id="go-value"><span>Value this cargo</span></button>
+      </div></div>
+    <div class="panel hidden" id="v-out"><header><h2>Break-even curve</h2><span class="grow"></span><span class="badge" id="v-badge"></span></header>
+      <div class="body">
+        <div class="curve" id="v-curve"></div>
+        <div class="readout" id="v-read"></div>
+        <p class="note" id="v-summary" style="margin-top:12px"></p>
+      </div></div>
+    <div class="grid2 hidden" id="v-detail">
+      <div class="panel"><header><h2>Why the plan changed</h2></header><div class="scroll"><table id="t-changes"></table></div></div>
+      <div class="panel"><header><h2>Segments</h2></header><div class="scroll"><table id="t-segs"></table></div></div>
+    </div>
+    <div class="panel hidden" id="v-absent"><header><h2>Crude valuation</h2></header><div class="body"><div class="checks" id="v-absent-list"></div></div></div>
+  </section>
+
+  <section data-panel="cases" class="stack hidden">
+    <div class="panel"><header><h2>Case stack</h2><span class="grow"></span><span class="chip" id="cases-meta"><span class="dot"></span><span>idle</span></span></header>
+      <div class="body ctrl">
+        <div class="field"><span>One case per line (JSON): name + any of cost, cost_scale, col_lo, col_hi, row_lo, row_hi · names may use * patterns</span>
+          <textarea id="cases" spellcheck="false"></textarea></div>
+        <div class="grid2" style="gap:12px">
+          <div class="field"><span>Or a case table (.xlsx / .csv: case, kind, name, value)</span><input id="cases-file" type="file" accept=".xlsx,.csv"></div>
+          <div class="field"><span>Results</span><div class="seg" id="seg-casexl"><button aria-pressed="true" data-v="0">on screen</button><button data-v="1">+ download .xlsx</button></div></div>
+        </div>
+        <button class="run" id="go-cases"><span>Run case stack</span></button>
+      </div></div>
+    <div class="panel"><header><h2>Results</h2></header><div class="scroll"><table id="t-cases"><tbody><tr><td class="empty">No cases run yet.</td></tr></tbody></table></div></div>
+  </section>
+
+  <section data-panel="explain" class="stack hidden">
+    <div class="panel"><header><h2>Infeasibility analysis</h2></header>
+      <div class="body ctrl"><p class="note">Finds the smallest relaxation of the limits that makes the plan feasible, names every conflicting limit, and proves the conflict with a Farkas certificate.</p>
+      <button class="run" id="go-explain"><span>Explain</span></button></div></div>
+    <div class="panel hidden" id="ex"><header><h2>Conflict</h2><span class="grow"></span><span class="chip" id="ex-chip"><span class="dot"></span><span></span></span></header><div class="body"><div class="checks" id="ex-list"></div></div></div>
+  </section>
+
+  <section data-panel="range" class="stack hidden">
+    <div class="panel"><header><h2>Exact sensitivity ranging</h2></header><div class="body ctrl"><p class="note">From the optimal basis: how far each price can move before the plan changes, and over what range each marginal value holds. ∞ means no limit on that side.</p><button class="run" id="go-range"><span>Compute ranges</span></button></div></div>
+    <div class="grid2"><div class="panel"><header><h2>Objective coefficients</h2></header><div class="scroll"><table id="t-cr"></table></div></div>
+    <div class="panel"><header><h2>Binding limits</h2></header><div class="scroll"><table id="t-rr"></table></div></div></div>
+  </section>
+
+  <section data-panel="verify" class="stack hidden">
+    <div class="panel"><header><h2>Independent verification</h2></header><div class="body ctrl">
+      <p class="note">Re-checks a certificate against the model with a separate reader, name-keyed data and optional exact rational arithmetic. Works on certificates from any machine.</p>
+      <div class="grid2" style="gap:12px"><div class="field"><span>Certificate (.json) · empty = last solve</span><input id="certfile" type="file" accept=".json"></div>
+      <div class="field"><span>Arithmetic</span><div class="seg" id="seg-exact"><button aria-pressed="true" data-v="0">float + compensated</button><button data-v="1">exact rational</button></div></div></div>
+      <button class="run" id="go-verify"><span>Verify</span></button></div></div>
+    <div class="panel hidden" id="vr"><header><h2>Checks</h2><span class="grow"></span><span class="chip" id="vr-chip"><span class="dot"></span><span></span></span></header><div class="body"><div class="checks" id="vr-list"></div></div></div>
+  </section>
+
+  <section data-panel="about" class="stack hidden">
+    <div class="panel"><header><h2>Sovereignty</h2></header><div class="body"><dl class="facts" id="about-facts"><dt>status</dt><dd>reading…</dd></dl></div></div>
+    <div class="panel"><header><h2>Provenance guard</h2><span class="grow"></span><span class="chip" id="about-guard"><span class="dot"></span><span></span></span></header><div class="body"><div class="checks" id="about-checks"></div></div></div>
+  </section>
+</main>
+</div>
+</div>
+<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+{
+  const q = new URLSearchParams(location.search);
+  const h = location.hash;
+  if (q.has("shot") || q.get("app") === "1" || h === "#app" || /(?:^|[#&])app(?:$|&)/.test(h)) {
+    $("#lab").hidden = true;
+    $("#app").hidden = false;
+  }
+}
+$("#enter").addEventListener("click", () => {
+  $("#lab").hidden = true;
+  const app = $("#app");
+  app.hidden = false;
+  app.classList.add("is-in");
+  $("#main").focus();
+});
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = v => v == null ? "—" : typeof v !== "number" ? esc(v) :
+  (v !== 0 && (Math.abs(v) >= 1e7 || Math.abs(v) < 1e-3)) ? v.toExponential(3) : v.toLocaleString(undefined,{maximumFractionDigits:4});
+const money = v => v == null ? "—" : v.toLocaleString(undefined,{maximumFractionDigits:2});
+let PSIG = 4;                      // significant digits for prices; set per curve from its tightest breakpoint gap
+const pfmt = v => { if (v == null) return "—"; const a = Math.abs(v);      // never exponent form: 25,000 not 2.500e+4
+  const dec = a >= 1 ? Math.max(0, PSIG - 1 - Math.floor(Math.log10(a))) : PSIG + Math.max(0, -Math.floor(Math.log10(a || 1)) - 1);
+  return Number(v).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: Math.min(12, dec)}); };
+function priceDigits(prices){ const xs=[...new Set(prices.map(Number))].sort((a,b)=>a-b); let gap=Infinity;
+  for(let i=1;i<xs.length;i++) gap=Math.min(gap, xs[i]-xs[i-1]);
+  const scale=Math.max(...xs.map(Math.abs), 1e-12); return Number.isFinite(gap) && gap>0 ? Math.min(12, Math.max(4, Math.ceil(Math.log10(scale/gap))+2)) : 4; }
+const bound = (v, side) => v == null ? (side < 0 ? "−∞" : "+∞") : fmt(v);   // JSON null = no limit on that side
+
+// Desktop mode: the window opens with #t=<token>; keep it in memory only and clear it from the address.
+let TOKEN = null;
+{ const m = /(?:^|[#&])t=([^&]+)/.exec(location.hash); if (m) { TOKEN = decodeURIComponent(m[1]); history.replaceState(null, "", location.pathname); } }
+
+let current = null;                 // {kind:"builtin", key, title, detail} | {kind:"text", name, text}
+let lastCert = null, lastHist = null, info = null, catalog = [], cols = null, curve = null, cursorT = null;
+const state = {engine:"auto", tol:"1e-6", dev:"auto", exact:"0", casexl:"0"};
+const SAMPLE = `NAME diesel_week
+OBJSENSE
+    MAX
+ROWS
+ N OBJ
+ L unit_capacity
+ E diesel_yield
+ G diesel_contract
+ L sulphur_spec
+COLUMNS
+ crude_light OBJ -60 unit_capacity 1
+ crude_light diesel_yield 0.55 sulphur_spec -0.2
+ crude_heavy OBJ -45 unit_capacity 1
+ crude_heavy diesel_yield 0.40 sulphur_spec 0.3
+ diesel OBJ 130 diesel_yield -1
+ diesel diesel_contract 1
+RHS
+ RHS unit_capacity 600 diesel_contract 250
+ RHS sulphur_spec 30
+BOUNDS
+ UP BND crude_light 400
+ UP BND crude_heavy 300
+ENDATA
+`;
+const SAMPLE_CASES = `{"name":"base"}
+{"name":"diesel price +10","cost":{"diesel":140}}
+{"name":"light crude capped at 300","col_hi":{"crude_light":300}}
+{"name":"contract +50","row_lo":{"diesel_contract":300}}
+{"name":"unit at 90%","row_hi":{"unit_capacity":540}}`;
+
+function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.remove("hidden"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.add("hidden"),8000); }
+async function api(path, body){
+  const headers = {"Content-Type":"application/json"}; if (TOKEN) headers.Authorization = "Bearer " + TOKEN;
+  const r = await fetch(path,{method:body?"POST":"GET",headers,body:body?JSON.stringify(body):undefined});
+  let j; try { j = await r.json(); } catch { throw new Error(`${r.status} ${r.statusText}: the console did not answer with JSON`); }
+  if(!r.ok || j.error) throw new Error(j.error || r.statusText); return j; }
+function modelBody(){ if(!current) throw new Error("Choose a model first: pick a built-in model on Home, or open a file.");
+  return current.kind === "builtin" ? {builtin: current.key} : {model: current.text}; }
+async function busy(btn, fn){ btn.disabled=true; const lab=btn.querySelector("span"), l=lab.textContent, t0=performance.now();
+  const tick=setInterval(()=>{ lab.textContent=`Working… ${((performance.now()-t0)/1000).toFixed(0)} s`; },500); lab.textContent="Working…";
+  try{ await fn(); } catch(e){ toast(e.message); } finally{ clearInterval(tick); btn.disabled=false; lab.textContent=l; } }
+function seg(id,key,cb){ $(id).addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return;
+  [...$(id).children].forEach(x=>x.setAttribute("aria-pressed", x===b?"true":"false")); state[key]=b.dataset.v; if(cb) cb(); }); }
+seg("#seg-engine","engine"); seg("#seg-tol","tol"); seg("#seg-dev","dev"); seg("#seg-exact","exact"); seg("#seg-casexl","casexl");
+function go(tab){ document.querySelectorAll(".rail button[data-tab]").forEach(x=>x.setAttribute("aria-current", x.dataset.tab===tab?"true":"false"));
+  document.querySelectorAll("[data-panel]").forEach(p=>p.classList.toggle("hidden", p.dataset.panel!==tab));
+  $("#modelbar").classList.toggle("hidden", tab==="home" || tab==="about");
+  if(tab==="value") loadColumns(); if(tab==="solve" && lastHist!==null) requestAnimationFrame(()=>drawConv(lastHist)); }
+document.querySelectorAll(".rail button[data-tab]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.tab)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.goto)));
+
+// ------------------------------------------------------------------ model selection
+function resetResults(){ lastCert=null; lastHist=null; cols=null; curve=null;
+  ["#res","#plan","#limits","#res-detail","#diag","#v-out","#v-detail","#v-absent","#ex","#vr","#dl"].forEach(s=>$(s).classList.add("hidden"));
+  $("#res-empty").classList.remove("hidden"); $("#t-cases").innerHTML=`<tbody><tr><td class="empty">No cases run yet.</td></tr></tbody>`;
+  $("#t-cr").innerHTML=""; $("#t-rr").innerHTML=""; }
+function setModel(m){ current=m; resetResults();
+  $("#mb-name").textContent = m.kind==="builtin" ? m.title : m.name;
+  $("#mb-info").textContent = m.kind==="builtin" ? `${m.detail} · built-in, generated on this machine` :
+    `${(m.text.length/1024).toFixed(1)} KB · ${m.text.split("\n").length} lines · local only`;
+  document.querySelectorAll(".card").forEach(c=>c.setAttribute("aria-pressed", m.kind==="builtin" && c.dataset.key===m.key ? "true":"false"));
+  $("#cases").value = m.kind==="text" && m.name.startsWith("diesel_week") ? SAMPLE_CASES : "";
+  if(m.kind==="builtin") caseTemplate(); }
+function loadText(name, text){ $("#model").value=text; $("#model").classList.remove("hidden"); setModel({kind:"text", name, text}); go("solve"); }
+$("#file").addEventListener("change", async e=>{ const f=e.target.files[0]; if(f) loadText(f.name, await f.text()); });
+const drop=$("#drop"); ["dragover","dragenter"].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add("over");}));
+["dragleave","drop"].forEach(ev=>drop.addEventListener(ev,()=>drop.classList.remove("over")));
+drop.addEventListener("drop", async e=>{ e.preventDefault(); const f=e.dataTransfer.files[0]; if(f) loadText(f.name, await f.text()); });
+$("#sample").addEventListener("click",()=>loadText("diesel_week.mps (MRPL-style sample)", SAMPLE));
+$("#model").addEventListener("input",()=>{ if(current && current.kind==="text") current.text=$("#model").value; });
+function renderCards(){ $("#cards").innerHTML = catalog.map(m=>`<button class="card" data-key="${esc(m.key)}" aria-pressed="false">
+    <small>${m.key.startsWith("refinery")?"refinery network":"reference model"}</small><b>${esc(m.title)}</b><span>${esc(m.detail)}</span></button>`).join("");
+  document.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>{ const m=catalog.find(x=>x.key===c.dataset.key);
+    setModel({kind:"builtin", key:m.key, title:m.title, detail:m.detail}); go("solve"); })); }
+async function caseTemplate(){ try{ const r = await api("/api/crude-columns", modelBody());
+    const lines = [`{"name":"base"}`];
+    for(const g of r.grades.slice(0,2)){          // a whole grade: every site and period, as one pattern
+      const cs = r.columns.filter(c=>c.grade===g.grade), stem = `BUY_${g.grade.replace(/ /g,"_")}_S`;
+      const key = cs.length>1 && cs.every(c=>c.column.startsWith(stem)) ? stem+"*" : null;
+      const sel = key ? {[key]:null} : Object.fromEntries(cs.map(c=>[c.column, null]));
+      const set = v => Object.fromEntries(Object.keys(sel).map(k=>[k, v]));
+      if(cs.every(c=>c.relative_ok)) lines.push(JSON.stringify({name:`${g.grade} +10%${key?" everywhere":""}`, cost_scale:set(1.1)}));
+      lines.push(JSON.stringify({name:`${g.grade} unavailable`, col_hi:set(0)})); }
+    if(!$("#cases").value.trim()) $("#cases").value = lines.join("\n"); } catch(e){ /* a model without cargo columns: the planner writes cases by hand */ } }
+
+// ------------------------------------------------------------------ drawing helpers
+function sealSVG(kind){
+  const c = kind==="optimal"?"var(--ok)":(kind==="infeasible"||kind==="unbounded")?"var(--amber)":"var(--bad)";
+  const label = kind==="optimal"?"VERIFIED":kind==="not_proven"?"UNPROVEN":"PROVEN";
+  const ticks = Array.from({length:36},(_,i)=>{const a=i*10*Math.PI/180, r1=38, r2=i%3?35:32; return `<line x1="${(42+r1*Math.cos(a)).toFixed(2)}" y1="${(42+r1*Math.sin(a)).toFixed(2)}" x2="${(42+r2*Math.cos(a)).toFixed(2)}" y2="${(42+r2*Math.sin(a)).toFixed(2)}" stroke="${c}" stroke-width="1"/>`}).join("");
+  return `${ticks}<circle cx="42" cy="42" r="28" fill="none" stroke="${c}" stroke-width="1.5"/>
+    <path d="M30 43l8 8 16-18" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" ${kind==="not_proven"?'opacity=".25"':''}/>
+    <text x="42" y="81" text-anchor="middle" font-family="monospace" font-size="7.5" letter-spacing="1.5" fill="${c}">${label}</text>`; }
+function gauge(v, tol){ if(v==null) return ""; const L=Math.log10(Math.max(v,1e-18)); const pct=Math.max(3,Math.min(100,(L+18)/(Math.log10(Math.max(tol,1e-18))+18)*100));
+  return `<div class="gauge"><i style="width:${pct}%;background:${v<=tol?'var(--ok)':'var(--bad)'}"></i></div>`; }
+function barTable(el, head, rows){ if(!rows.length){ el.innerHTML=`<tbody><tr><td class="empty">none</td></tr></tbody>`; return; }
+  const mx=Math.max(1e-300,...rows.map(r=>Math.abs(r[1])));
+  el.innerHTML = `<thead><tr><th>${head[0]}</th><th class="n">${head[1]}</th><th></th></tr></thead><tbody>` + rows.map(([n,v])=>
+    `<tr><td>${esc(n)}</td><td class="n">${fmt(v)}</td><td><div class="bar"><i class="${v<0?'neg':''}" style="left:0;width:${Math.abs(v)/mx*100}%"></i></div></td></tr>`).join("")+"</tbody>"; }
+function plainTable(el, head, rows){ if(!rows.length){ el.innerHTML=`<tbody><tr><td class="empty">none</td></tr></tbody>`; return; }
+  el.innerHTML = "<thead><tr>"+head.map(h=>`<th>${h}</th>`).join("")+"</tr></thead><tbody>"+
+  rows.map(r=>"<tr>"+r.map(c=>typeof c==="number"?`<td class="n">${fmt(c)}</td>`:(c&&c.html!==undefined)?`<td class="${c.cls||""}">${c.html}</td>`:`<td>${c==null?"—":esc(c)}</td>`).join("")+"</tr>").join("")+"</tbody>"; }
+const cssv = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+function drawConv(hist){
+  lastHist = hist || [];
+  const cv=$("#conv"), dpr=window.devicePixelRatio||1, W=cv.clientWidth, H=cv.clientHeight; if(!W) return;
+  cv.width=W*dpr; cv.height=H*dpr; const g=cv.getContext("2d"); g.scale(dpr,dpr); g.clearRect(0,0,W,H);
+  if(!hist || hist.length<2){ g.fillStyle=cssv("--dim"); g.font="12px monospace"; g.textAlign="center"; g.fillText("vertex engine: exact pivots, no residual trace", W/2, H/2); return; }
+  const series=[["rel_primal","--sig"],["rel_dual","--amber"],["rel_gap","--ok"]];
+  const x0=hist[0].iter, x1=hist[hist.length-1].iter;
+  const vals=hist.flatMap(h=>series.map(([k])=>h[k])).filter(v=>v>0);
+  const lo=Math.floor(Math.log10(Math.min(...vals))), hi=Math.ceil(Math.log10(Math.max(...vals)));
+  const P={l:44,r:10,t:8,b:22}, X=v=>P.l+(v-x0)/((x1-x0)||1)*(W-P.l-P.r), Y=v=>P.t+(hi-Math.log10(Math.max(v,10**lo)))/((hi-lo)||1)*(H-P.t-P.b);
+  g.strokeStyle=cssv("--line"); g.fillStyle=cssv("--dim"); g.font="10px monospace"; g.lineWidth=1;
+  for(let e=lo;e<=hi;e++){ const y=Y(10**e); g.beginPath(); g.moveTo(P.l,y); g.lineTo(W-P.r,y); g.stroke(); g.fillText(`1e${e}`,4,y+3); }
+  g.fillText(`${x0}`,P.l,H-6); g.textAlign="right"; g.fillText(`${x1} iterations`,W-P.r,H-6); g.textAlign="left";
+  for(const [k,c] of series){ g.strokeStyle=cssv(c); g.lineWidth=1.6; g.beginPath(); let s=false;
+    for(const h of hist){ const v=h[k]; if(!(v>0)) continue; s?g.lineTo(X(h.iter),Y(v)):g.moveTo(X(h.iter),Y(v)); s=true; } g.stroke(); } }
+
+// ------------------------------------------------------------------ solve
+$("#go-solve").addEventListener("click", e=>busy(e.currentTarget, async()=>{
+  const r = await api("/api/solve",{...modelBody(), engine:state.engine, tol:parseFloat(state.tol), backend:state.dev});
+  $("#res-empty").classList.add("hidden"); $("#res").classList.remove("hidden");
+  if(r.kind==="bilinear"){ $("#seal").innerHTML=sealSVG(r.feasible?"optimal":"not_proven"); $("#v").textContent=r.feasible?"FEASIBLE PLAN":"NOT FEASIBLE"; $("#v").className="vtext "+(r.feasible?"optimal":"not_proven");
+    $("#obj").innerHTML=`objective <b>${fmt(r.objective)}</b>`; $("#hash").textContent=r.size; $("#timing").innerHTML=`${fmt(r.time)} s<br>${esc(r.iterations)} SLP iterations`;
+    $("#kpis").innerHTML=""; $("#pipe").innerHTML=""; ["#res-detail","#plan","#limits"].forEach(s=>$(s).classList.add("hidden")); return; }
+  const tol=parseFloat(state.tol), res=r.residuals||{}, en=r.engine||{}, pl=r.planner;
+  $("#seal").innerHTML=sealSVG(r.verdict); $("#v").textContent=r.verdict.replace("_"," ").toUpperCase(); $("#v").className="vtext "+r.verdict;
+  $("#obj").innerHTML = r.objective==null ? "no plan: the verdict itself is proven" :
+    pl ? `${esc(pl.objective.label.toLowerCase())} <b>${money(pl.objective.value)}</b>` : `objective <b>${fmt(r.objective)}</b>`;
+  $("#hash").textContent = `${r.model} · ${r.size} · sha256 ${r.certificate.model.sha256.slice(0,16)}…`;
+  $("#timing").innerHTML = `${fmt(en.time)} s<br>${en.iterations ?? "—"} iterations`;
+  const k=[["primal residual",res.rel_primal,1],["dual residual",res.rel_dual,1],["duality gap",res.rel_gap,1],["engine",en.engine],["device",en.backend==="cupy"?"GPU":"CPU"],["tolerance",tol]];
+  $("#kpis").innerHTML=k.map(([n,v,g])=>`<div class="kpi"><span>${n}</span><b>${fmt(v)}</b>${g?gauge(v,tol):""}</div>`).join("");
+  const proven = ["optimal","infeasible","unbounded"].includes(r.verdict);
+  const ev = {optimal:"KKT residuals",infeasible:"Farkas ray",unbounded:"unbounded ray"}[r.verdict] || "none";
+  $("#pipe").innerHTML = [["router", `${en.engine} · ${en.backend==="cupy"?"GPU":"CPU"}`, en.reason, "on"],
+    ["engine", `${en.iterations ?? "—"} iterations`, `${fmt(en.time)} s`, "on"],
+    ["checker", proven?"passed":"not proven", `original, unscaled model · tol ${tol}`, proven?"pass":"fail"],
+    ["certificate", ev, "re-check it in Verify", proven?"pass":"fail"]]
+    .map(([s,b,sm,c])=>`<div class="stage ${c}"><span>${s}</span><b>${esc(b)}</b><small>${esc(sm||"")}</small></div>`).join("");
+  $("#res-detail").classList.remove("hidden");
+  barTable($("#t-x"),["column","value"], r.top_values||[]); barTable($("#t-y"),["row","marginal"], r.marginals||[]);
+  drawConv(r.history);
+  lastCert=r.certificate; $("#dl").classList.remove("hidden");
+  $("#plan").classList.toggle("hidden", !pl); $("#limits").classList.toggle("hidden", !pl);
+  if(pl) renderPlan(pl);
+  if(r.explanation){ $("#diag").classList.remove("hidden"); const ex=r.explanation;
+    $("#diag-list").innerHTML=(ex.items||[]).map(i=>`<div class="check"><span class="lamp fail"></span><span>${esc(i.constraint)}: ${esc(i.issue)}</span><span></span></div>`).join("")+
+      `<div class="check"><span class="lamp pass"></span><span>${esc(ex.proof||"")}</span><span></span></div>`; } else $("#diag").classList.add("hidden");
+}));
+function renderPlan(pl){
+  const sl=pl.plan.crude_slate||[], mx=Math.max(1e-300,...sl.map(s=>s.share));
+  plainTable($("#t-slate"),["crude","volume","share",""], sl.map(s=>[s.crude, s.volume, {html:`${(s.share*100).toFixed(1)}%`, cls:"n"},
+    {html:`<div class="bar"><i style="left:0;width:${s.share/mx*100}%"></i></div>`}]));
+  const units=(pl.plan.units||[]).slice().sort((a,b)=>(b.utilisation??0)-(a.utilisation??0));
+  plainTable($("#t-units"),["unit","where","use",""], units.map(u=>[u.unit, u.where||"—", {html:u.utilisation==null?"—":`${(u.utilisation*100).toFixed(1)}%`, cls:"n"},
+    {html:`<div class="bar"><i class="${(u.utilisation??0)>0.999?'hot':''}" style="left:0;width:${Math.min(100,(u.utilisation??0)*100)}%"></i></div>`}]));
+  const pr=pl.plan.products||[], pm=Math.max(1e-300,...pr.map(p=>p.volume));
+  plainTable($("#t-prod"),["product","volume",""], pr.map(p=>[p.product, p.volume, {html:`<div class="bar"><i style="left:0;width:${p.volume/pm*100}%"></i></div>`}]));
+  const lim=pl.limits||[]; const m=$("#lim-meta"); m.className="chip sig"; m.lastElementChild.textContent=`${lim.length} binding limits · value per unit of ${pl.objective.label.toLowerCase()}`;
+  plainTable($("#t-limits"),["limit","side","activity","value of one more unit"], lim.map(d=>[
+    {html:esc(d.label), cls:"wrap"}, d.side, d.activity, {html:`<b>${money(d.shadow_price)}</b>`, cls:"n"}])); }
+$("#dl").addEventListener("click",()=>{ if(!lastCert) return; download(new Blob([JSON.stringify(lastCert,null,1)],{type:"application/json"}), (lastCert.model.name||"model")+".cert.json"); });
+function download(blob, name){ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href), 5000); }
+
+// ------------------------------------------------------------------ crude valuation
+function rangeLabel(){ const c=selectedColumn(), v=+$("#v-range").value;
+  $("#v-range-label").textContent = c && !c.relative_ok ? `Price range 0 … ${v}` : `Price move ±${v}%`; }
+$("#v-range").addEventListener("input", rangeLabel);
+function selectedColumn(){ if(!cols) return null; const name = cols.columns.length ? $("#v-col").value : $("#v-coltext").value.trim();
+  return cols.columns.find(c=>c.column===name) || (name ? {column:name, label:name, cost:null, relative_ok:true} : null); }
+async function loadColumns(){
+  if(!current || cols) return;
+  const meta=$("#value-meta");
+  if(info && info.crude_valuation===false){ showAbsent(); return; }
+  try{ cols = await api("/api/crude-columns", modelBody()); } catch(e){ toast(e.message); return; }
+  const gs=$("#v-grade"), cs=$("#v-col"), txt=$("#v-coltext");
+  if(!cols.columns.length){ gs.innerHTML=`<option>any column</option>`; gs.disabled=true; cs.classList.add("hidden"); txt.classList.remove("hidden"); txt.value="";
+    meta.className="chip"; meta.lastElementChild.textContent="type a column name"; rangeLabel(); return; }
+  gs.disabled=false; cs.classList.remove("hidden"); txt.classList.add("hidden");
+  gs.innerHTML = cols.grades.map(g=>`<option value="${esc(g.grade)}">${esc(g.grade)} · ${g.n_columns} cargo${g.n_columns>1?"es":""}</option>`).join("");
+  const fill = () => { const g=gs.value, d=cols.grades.find(x=>x.grade===g);
+    cs.innerHTML = cols.columns.filter(c=>c.grade===g).map(c=>`<option value="${esc(c.column)}"${c.column===d.default_column?" selected":""}>${esc(c.label)}</option>`).join(""); rangeLabel(); };
+  gs.onchange = fill; cs.onchange = rangeLabel; fill();
+  meta.className="chip"; meta.lastElementChild.textContent=`${cols.columns.length} cargo columns${cols.truncated?" (first "+cols.columns.length+")":""}`; }
+function showAbsent(r){ $("#v-absent").classList.remove("hidden"); const m=$("#value-meta"); m.className="chip bad"; m.lastElementChild.textContent="full edition only";
+  $("#v-absent-list").innerHTML=`<div class="check"><span class="lamp fail"></span><span>${esc((r&&r.detail)||"Crude valuation is not part of this build (see docs/EDITIONS.md).")}</span><span></span></div>`; }
+$("#go-value").addEventListener("click", e=>busy(e.currentTarget, async()=>{
+  const c=selectedColumn(); if(!c) throw new Error("Choose a cargo column."); const v=+$("#v-range").value;
+  const rel = c.relative_ok !== false, t_lo = rel ? -v/100 : 0, t_hi = rel ? v/100 : v;
+  const r = await api("/api/crude-value",{...modelBody(), column:c.column, t_lo, t_hi, relative:rel});
+  if(r.status==="full_edition_only"){ showAbsent(r); return; }
+  curve = {r, c, rel}; cursorT = 0 >= t_lo && 0 <= t_hi ? 0 : t_lo;
+  const ok = r.cert_valid===true, meta=$("#value-meta");
+  meta.className = "chip " + (ok?"ok":"bad"); meta.lastElementChild.textContent = `${r.n_segments} segments · ${r.total_pivots} pivots`;
+  const b=$("#v-badge"); b.className="badge "+(ok?"pass":"fail"); b.textContent = ok ? "EVERY SEGMENT CERTIFIED" : "CERTIFICATE FAILED";
+  $("#v-out").classList.remove("hidden"); $("#v-detail").classList.remove("hidden"); $("#v-absent").classList.add("hidden");
+  PSIG = priceDigits([r.display.base_price, ...r.display.segments.flatMap(g=>[g.price_lo, g.price_hi])]);
+  const near = r.display.changes.filter(ch=>Math.abs(ch.price-r.display.base_price) <= 1e-3*Math.abs(r.display.base_price)).length;
+  $("#v-summary").textContent = (near>1 ? `${near} plan changes fall within 0.1% of today's price ${pfmt(r.display.base_price)}: this cargo is priced right at its break-even. ` : "") +
+    `Each segment's certificate was checked at both ends and the midpoint.`;
+  const vol = v => v==null ? "—" : fmt(v);
+  const names = xs => xs.length ? xs.map(esc).join("<br>") : "—";
+  plainTable($("#t-changes"),["at price","cargo volume","starts","stops"], r.display.changes.map(ch=>[
+    {html:`<b>${pfmt(ch.price)}</b>`, cls:"n"}, {html:`${vol(ch.volume_before)} → ${vol(ch.volume_after)}`, cls:"n"},
+    {html:`<span title="${esc(ch.detail)}">${names(ch.starts)}</span>`, cls:"wrap"}, {html:`<span title="${esc(ch.detail)}">${names(ch.stops)}</span>`, cls:"wrap"}]));
+  plainTable($("#t-segs"),["price from","to","cargo volume",`${esc(r.display.label.toLowerCase())} per +1 price`,"certificate"], r.display.segments.map(g=>[
+    {html:pfmt(g.price_lo), cls:"n"}, {html:pfmt(g.price_hi), cls:"n"}, g.volume,
+    {html:money((g.value_hi-g.value_lo)/((g.price_hi-g.price_lo)||1)), cls:"n"},
+    {html:g.cert_valid===true?`<span class="badge pass">CERTIFIED</span>`:`<span class="badge fail">${g.cert_valid===false?"FAILED":"N/A"}</span>`}]));
+  drawCurve(); }));
+function drawCurve(){
+  if(!curve) return; const {r, rel} = curve, segs = r.display.segments, host=$("#v-curve");
+  const W = host.clientWidth || 900, H = 340, P = {l:128, r:18, t:16, b:40};
+  const x0 = segs[0].price_lo, x1 = segs[segs.length-1].price_hi;
+  const ys = segs.flatMap(s=>[s.value_lo, s.value_hi]); let y0=Math.min(...ys), y1=Math.max(...ys); if(y1-y0 < 1e-9*Math.max(1,Math.abs(y1))){ y0-=1; y1+=1; }
+  const pad=(y1-y0)*0.08; y0-=pad; y1+=pad;
+  const X = v => P.l + (v-x0)/((x1-x0)||1)*(W-P.l-P.r), Y = v => P.t + (y1-v)/((y1-y0)||1)*(H-P.t-P.b);
+  const ticks = n => Array.from({length:n+1},(_,i)=>i/n);
+  let s = `<svg viewBox="0 0 ${W} ${H}" id="v-svg" role="img" aria-label="break-even curve">`;
+  for(const f of ticks(4)){ const yv=y0+f*(y1-y0); s+=`<line x1="${P.l}" x2="${W-P.r}" y1="${Y(yv)}" y2="${Y(yv)}" stroke="var(--line)"/><text x="${P.l-8}" y="${Y(yv)+4}" text-anchor="end" font-family="monospace" font-size="10.5" fill="var(--dim)">${esc(money(yv))}</text>`; }
+  for(const f of ticks(5)){ const xv=x0+f*(x1-x0); s+=`<text x="${X(xv)}" y="${H-P.b+16}" text-anchor="middle" font-family="monospace" font-size="10.5" fill="var(--dim)">${esc(pfmt(xv))}</text>`; }
+  s+=`<text x="${(P.l+W-P.r)/2}" y="${H-6}" text-anchor="middle" font-family="monospace" font-size="10.5" fill="var(--muted)">cargo price · ${esc(curve.c.label)}</text>`;
+  s+=`<text x="14" y="${(P.t+H-P.b)/2}" text-anchor="middle" font-family="monospace" font-size="10.5" fill="var(--muted)" transform="rotate(-90 14 ${(P.t+H-P.b)/2})">${esc(r.display.label)}</text>`;
+  for(const bp of r.display.price_breakpoints||[]){ if(bp<=x0||bp>=x1) continue; s+=`<line x1="${X(bp)}" x2="${X(bp)}" y1="${P.t}" y2="${H-P.b}" stroke="var(--amber)" stroke-dasharray="3 4" stroke-opacity=".8"/>`; }
+  segs.forEach(g=>{ const c = g.cert_valid===true ? "var(--ok)" : "var(--bad)";
+    s+=`<line x1="${X(g.price_lo)}" y1="${Y(g.value_lo)}" x2="${X(g.price_hi)}" y2="${Y(g.value_hi)}" stroke="${c}" stroke-width="2.4" stroke-linecap="round"/>`; });
+  const today = r.display.base_price; if(today>=x0 && today<=x1) s+=`<line x1="${X(today)}" x2="${X(today)}" y1="${P.t}" y2="${H-P.b}" stroke="var(--muted)" stroke-opacity=".5"/><text x="${X(today)+4}" y="${P.t+11}" font-family="monospace" font-size="10" fill="var(--muted)">today</text>`;
+  s+=`<g id="v-cur"><line id="v-cl" y1="${P.t}" y2="${H-P.b}" stroke="var(--sig)" stroke-width="1.2"/><circle id="v-cd" r="5" fill="var(--sig)" stroke="var(--panel)" stroke-width="2"/></g></svg>`;
+  host.innerHTML = s; const svg=$("#v-svg");
+  const tOf = price => rel ? price/r.display.base_price - 1 : price - r.display.base_price;
+  const setPrice = price => { price=Math.min(x1,Math.max(x0,price)); cursorT=tOf(price);
+    const i = segs.findIndex(g=>price>=g.price_lo-1e-12 && price<=g.price_hi+1e-12), g=segs[Math.max(0,i)];
+    const f = (price-g.price_lo)/((g.price_hi-g.price_lo)||1), val = g.value_lo + f*(g.value_hi-g.value_lo);
+    $("#v-cl").setAttribute("x1",X(price)); $("#v-cl").setAttribute("x2",X(price)); $("#v-cd").setAttribute("cx",X(price)); $("#v-cd").setAttribute("cy",Y(val));
+    const slope = (g.value_hi-g.value_lo)/((g.price_hi-g.price_lo)||1);
+    $("#v-read").innerHTML = [["cargo price", pfmt(price)], [r.display.label, money(val)], ["volume bought", fmt(g.volume)],
+      [`${r.display.label.toLowerCase()} per +1 price`, money(slope)], ["this segment", g.cert_valid===true?`<span class="badge pass">CERTIFIED</span>`:`<span class="badge fail">NOT CERTIFIED</span>`]]
+      .map(([k,v])=>`<div><span>${esc(k)}</span><b>${v}</b></div>`).join(""); };
+  const fromEvent = ev => { const b=svg.getBoundingClientRect(); return x0 + ((ev.clientX-b.left)/b.width*W - P.l)/(W-P.l-P.r)*(x1-x0); };
+  let drag=false; svg.addEventListener("pointerdown",ev=>{ drag=true; svg.setPointerCapture(ev.pointerId); setPrice(fromEvent(ev)); });
+  svg.addEventListener("pointermove",ev=>{ if(drag) setPrice(fromEvent(ev)); }); svg.addEventListener("pointerup",()=>{ drag=false; });
+  svg.tabIndex=0; svg.addEventListener("keydown",ev=>{ const st=(x1-x0)/100; const cur=rel?r.display.base_price*(1+cursorT):r.display.base_price+cursorT;
+    if(ev.key==="ArrowLeft"){ setPrice(cur-st); ev.preventDefault(); } if(ev.key==="ArrowRight"){ setPrice(cur+st); ev.preventDefault(); } });
+  setPrice(rel ? r.display.base_price*(1+cursorT) : r.display.base_price + cursorT); }
+
+// ------------------------------------------------------------------ cases
+$("#go-cases").addEventListener("click", e=>busy(e.currentTarget, async()=>{
+  const body = {...modelBody(), want_xlsx: state.casexl==="1"}; const f=$("#cases-file").files[0];
+  if(f){ const buf=new Uint8Array(await f.arrayBuffer()); let bin=""; for(let i=0;i<buf.length;i+=0x8000) bin+=String.fromCharCode(...buf.subarray(i,i+0x8000)); body.cases_xlsx=btoa(bin); }
+  else body.cases=$("#cases").value.split("\n").filter(l=>l.trim()).map((l,i)=>{ try{return JSON.parse(l);}catch{ throw new Error(`Case line ${i+1} is not valid JSON.`);} });
+  if(!f && !body.cases.length) throw new Error("Write at least one case, or choose a case table file.");
+  const r=await api("/api/cases",body); const m=$("#cases-meta"); m.className="chip sig";
+  m.lastElementChild.textContent=`${r.table.length} cases · ${r.engine.engine} on ${r.engine.backend==="cupy"?"GPU":"CPU"} · ${r.wall_time.toFixed(2)} s`;
+  const pl = r.objective_label, val = t => pl ? t.value : t.objective, dlt = t => (pl ? t.value_delta : t.delta_vs_first) || 0;
+  const num = v => pl ? money(v) : fmt(v);
+  const mx=Math.max(1e-300,...r.table.map(t=>Math.abs(dlt(t))));
+  $("#t-cases").innerHTML=`<thead><tr><th>case</th><th>certificate</th><th class='n'>${esc(pl ? pl.toLowerCase() : "objective")}</th><th class='n'>change vs first</th><th></th><th class='n'>max residual</th></tr></thead><tbody>`+
+    r.table.map(t=>{const d=dlt(t), w=Math.abs(d)/mx*50; const ok=t.verdict==="optimal";
+      return `<tr><td>${esc(t.case)}</td><td><span class="badge ${ok?"pass":"fail"}">${ok?"CERTIFIED":esc((t.verdict||"open").toUpperCase())}</span></td><td class="n">${num(val(t))}</td><td class="n">${num(d)}</td><td><div class="bar"><i class="${d<0?'neg':''}" style="${d<0?'right:50%':'left:50%'};width:${w}%"></i></div></td><td class="n">${fmt(t.max_rel)}</td></tr>`;}).join("")+"</tbody>";
+  if(r.report_xlsx){ const raw=atob(r.report_xlsx), u=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) u[i]=raw.charCodeAt(i);
+    download(new Blob([u],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}), "case_results.xlsx"); }
+}));
+
+// ------------------------------------------------------------------ explain, range, verify
+$("#go-explain").addEventListener("click", e=>busy(e.currentTarget, async()=>{
+  const r=await api("/api/explain",modelBody()); $("#ex").classList.remove("hidden"); const c=$("#ex-chip");
+  if(r.feasible){ c.className="chip ok"; c.lastElementChild.textContent="feasible"; $("#ex-list").innerHTML=`<div class="check"><span class="lamp pass"></span><span>The plan is feasible: no relaxation needed.</span><span></span></div>`; return; }
+  c.className="chip bad"; c.lastElementChild.textContent=`infeasible · minimal relaxation ${fmt(r.total_relaxation)}`;
+  const mx=Math.max(1e-300,...(r.items||[]).map(i=>i.shortfall||0));
+  $("#ex-list").innerHTML=(r.items||[]).map(i=>`<div class="check"><span class="lamp fail"></span><span>${esc(i.constraint)}: ${esc(i.issue)}</span><span><div class="bar" style="width:120px"><i class="neg" style="left:0;width:${(i.shortfall||0)/mx*100}%"></i></div></span></div>`).join("")+
+    `<div class="check"><span class="lamp ${r.farkas_check&&r.farkas_check.valid?'pass':'fail'}"></span><span>Proof: ${esc(r.proof)} · conflict: ${esc((r.conflict_rows||[]).join(", "))}</span><span></span></div>`;
+}));
+$("#go-range").addEventListener("click", e=>busy(e.currentTarget, async()=>{
+  const r=await api("/api/range",modelBody());
+  plainTable($("#t-cr"),["column","value","coef","min","max","status"], r.cost.map(d=>[d.column,d.value,d.cost,{html:bound(d.cost_min,-1),cls:"n"},{html:bound(d.cost_max,1),cls:"n"},d.status]));
+  plainTable($("#t-rr"),["row","marginal","limit","min","max"], r.rhs.map(d=>[d.row,d.marginal,d.limit,{html:bound(d.limit_min,-1),cls:"n"},{html:bound(d.limit_max,1),cls:"n"}]));
+}));
+$("#go-verify").addEventListener("click", e=>busy(e.currentTarget, async()=>{
+  const f=$("#certfile").files[0]; const cert=f?JSON.parse(await f.text()):lastCert; if(!cert) throw new Error("Choose a certificate file, or solve a model first.");
+  const r=await api("/api/verify",{...modelBody(), certificate:cert, exact:state.exact==="1"}); $("#vr").classList.remove("hidden");
+  const c=$("#vr-chip"); c.className="chip "+(r.passed?"ok":"bad"); c.lastElementChild.textContent=r.passed?"VERIFIED":"REJECTED";
+  $("#vr-list").innerHTML=r.checks.map(([n,ok,d])=>`<div class="check"><span class="lamp ${ok?'pass':'fail'}"></span><span>${esc(n)}</span><span>${esc(d)}</span></div>`).join("");
+}));
+
+// ------------------------------------------------------------------ status, about
+function facts(el, rows){ el.innerHTML = rows.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${v}</dd>`).join(""); }
+function renderInfo(){
+  const e=info.environment||{}, p=info.provenance||{}, nat=info.native||{};
+  const d=$("#c-dev"); d.className="chip "+(e.gpu?"sig":""); d.lastElementChild.textContent=e.gpu?`GPU · ${e.gpu}`:"CPU · no CUDA device";
+  const n=$("#c-native"); n.className="chip "+(nat.simplex?"ok":"warn"); n.lastElementChild.textContent=nat.simplex?"native cores":"pure Python";
+  const g=$("#c-guard"); g.className="chip "+(p.clean?"ok":"bad"); g.lastElementChild.textContent=p.clean?"provenance clean":"provenance VIOLATION";
+  $("#c-ver").lastElementChild.textContent="v"+info.version;
+  facts($("#home-facts"), [["engine", `QENIVO ${esc(info.version)} · edition tag “${esc(info.edition)}”${info.edition==="public"?" (no Pro plugin installed)":""}`],
+    ["native cores", nat.simplex ? "built (C++ simplex, IPM, exact arithmetic)" : `not built: ${esc(nat.status||"")}`],
+    ["device", e.gpu ? esc(e.gpu) : "CPU (no CUDA device found)"], ["crude valuation", info.crude_valuation ? "available in this build" : "not in this build (full edition)"],
+    ["network", "console bound to loopback · page may connect only to this server"]]);
+  facts($("#about-facts"), [["solver core", "written from the published mathematics; no solver library in the solve path"],
+    ["certificates", "every answer carries a KKT, Farkas or ray certificate checked on the original, unscaled model"],
+    ["independent check", "Verify re-reads the model with a separate reader; exact rational arithmetic on request"],
+    ["air gap", "binds to loopback; Content-Security-Policy connect-src 'self'; no fonts, CDNs or telemetry"],
+    ["licence", "Apache License 2.0"], ["version", `${esc(info.version)} · edition tag “${esc(info.edition)}”`],
+    ["python", esc(e.python||"—")], ["platform", esc(e.platform||"—")]]);
+  const ag=$("#about-guard"); ag.className="chip "+(p.clean?"ok":"bad"); ag.lastElementChild.textContent=p.clean?"clean":"violation";
+  const forb=p.forbidden_packages||[], hits=p.tripwire_hits||[];
+  $("#about-checks").innerHTML=[[forb.length===0, "no optimisation-solver package imported in this process", forb.length?forb.slice(0,6).join(", "):"none found"],
+    [!!p.tripwires_installed, "tripwires on every sparse direct solver and optimiser entry point (splu, spsolve, linprog, …)", p.tripwires_installed?"installed":"not installed"],
+    [hits.length===0, "tripwire hits since the console started", hits.length?hits.join(", "):"0"]]
+    .map(([ok,t,d])=>`<div class="check"><span class="lamp ${ok?"pass":"fail"}"></span><span>${esc(t)}</span><span>${esc(d)}</span></div>`).join(""); }
+$("#theme").addEventListener("click",()=>{ const r=document.documentElement;
+  const dark = r.dataset.theme ? r.dataset.theme==="dark" : !matchMedia("(prefers-color-scheme: light)").matches;
+  r.dataset.theme = dark ? "light" : "dark"; if(lastHist!==null) drawConv(lastHist); });
+let rt; window.addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(()=>{ if(lastHist!==null) drawConv(lastHist); if(curve && !$("#v-out").classList.contains("hidden")) drawCurve(); },150); });
+
+// Scripted views for the deck screenshots (packaging/screenshots.py):
+//   ?shot=<tab>&model=<builtin key>|sample&engine=<engine>&run=1
+// It selects, navigates and presses the tab's own button, i.e. only what a planner could click.
+const until = async (ok, ms=120000) => { const t0=performance.now(); while(!ok() && performance.now()-t0<ms) await new Promise(r=>setTimeout(r,100)); };
+async function scripted(q){
+  const key=q.get("model"), tab=q.get("shot");
+  if(q.get("theme")) document.documentElement.dataset.theme = q.get("theme")==="light" ? "light" : "dark";
+  if(key==="sample") loadText("diesel_week.mps (MRPL-style sample)", SAMPLE);
+  else if(key){ const m=catalog.find(x=>x.key===key); if(m) setModel({kind:"builtin", key:m.key, title:m.title, detail:m.detail}); }
+  if(q.get("engine")) document.querySelector(`#seg-engine button[data-v="${CSS.escape(q.get("engine"))}"]`)?.click();
+  if(q.get("tol")) document.querySelector(`#seg-tol button[data-v="${CSS.escape(q.get("tol"))}"]`)?.click();
+  go(tab);
+  if(tab==="value") await loadColumns();
+  const btn={solve:"#go-solve", value:"#go-value", cases:"#go-cases", range:"#go-range", explain:"#go-explain", verify:"#go-verify"}[tab];
+  if(q.get("run")==="1" && btn){
+    if(tab==="verify"){ $("#go-solve").click(); await until(()=>!$("#go-solve").disabled); go("verify"); }
+    if(tab==="cases") await until(()=>$("#cases").value.trim(), 10000);   // the template fills in async
+    $(btn).click(); await new Promise(r=>setTimeout(r,50)); await until(()=>!$(btn).disabled);
+  }
+  if(q.get("scroll")) document.getElementById(q.get("scroll"))?.scrollIntoView({block:"start"});
+  document.body.dataset.shotDone = "1";
+}
+Promise.all([
+  api("/api/info").then(i=>{ info=i; renderInfo(); }).catch(e=>toast("Console unreachable: "+e.message)),
+  api("/api/catalog").then(c=>{ catalog=c.models; renderCards(); const m=$("#cat-meta"); m.className="chip sig"; m.lastElementChild.textContent=`${catalog.length} models · generated locally`; })
+    .catch(e=>{ $("#cards").innerHTML=`<div class="empty">${esc(e.message)}</div>`; }),
+]).then(()=>{ const q=new URLSearchParams(location.search); if(q.get("shot")) scripted(q).catch(e=>toast(e.message)); });
+go("home");
+</script>
+</body>
+</html>

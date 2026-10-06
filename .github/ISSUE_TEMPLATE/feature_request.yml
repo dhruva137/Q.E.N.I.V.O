@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose an enhancement
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What planner or developer need is unmet?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: API / CLI / engine sketch. Note sovereignty constraints.
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Layer
+      options:
+        - kernels
+        - engines
+        - certify
+        - workload
+        - CLI / packaging / docs
+        - other
+    validations:
+      required: true

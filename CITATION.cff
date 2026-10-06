@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "QENIVO: Quantified Exact Native Independent Verified Optimisation"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "Gowda"
+    given-names: "Dhruva P"
+repository-code: "https://github.com/dhruva137/Q.E.N.I.V.O"
+license: Apache-2.0
+version: "0.1.0"
+date-released: "2026-10-05"
+abstract: >
+  A certified optimisation engine for LP, MILP and convex QP, written from the published
+  mathematics, with GPU-batched what-if planning for refinery and industrial applications.
+keywords:
+  - optimization
+  - linear programming
+  - mixed-integer programming
+  - GPU
+  - PDHG
+  - certificates

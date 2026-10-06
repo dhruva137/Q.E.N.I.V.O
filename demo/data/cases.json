@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {"name": "base"},
+    {"name": "diesel price +10", "cost": {"diesel": 140}},
+    {"name": "light crude capped at 300", "col_hi": {"crude_light": 300}},
+    {"name": "contract +50", "row_lo": {"diesel_contract": 300}},
+    {"name": "unit at 90%", "row_hi": {"unit_capacity": 540}}
+  ]
+}

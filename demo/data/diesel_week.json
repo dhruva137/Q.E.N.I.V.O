@@ -1,0 +1,85 @@
+{
+ "format": "qenivo-json",
+ "version": 1,
+ "name": "diesel_week",
+ "sense": "max",
+ "objective_offset": 0.0,
+ "columns": [
+  {
+   "name": "crude_light",
+   "obj": -60.0,
+   "lb": 0.0,
+   "ub": 400.0,
+   "integer": false
+  },
+  {
+   "name": "crude_heavy",
+   "obj": -45.0,
+   "lb": 0.0,
+   "ub": 300.0,
+   "integer": false
+  },
+  {
+   "name": "diesel",
+   "obj": 130.0,
+   "lb": 0.0,
+   "ub": null,
+   "integer": false
+  }
+ ],
+ "rows": [
+  {
+   "name": "unit_capacity",
+   "lb": null,
+   "ub": 600.0
+  },
+  {
+   "name": "diesel_yield",
+   "lb": 0.0,
+   "ub": 0.0
+  },
+  {
+   "name": "diesel_contract",
+   "lb": 250.0,
+   "ub": null
+  },
+  {
+   "name": "sulphur_spec",
+   "lb": null,
+   "ub": 30.0
+  }
+ ],
+ "A": {
+  "rows": [
+   0,
+   0,
+   1,
+   1,
+   1,
+   2,
+   3,
+   3
+  ],
+  "cols": [
+   0,
+   1,
+   0,
+   1,
+   2,
+   2,
+   0,
+   1
+  ],
+  "values": [
+   1.0,
+   1.0,
+   0.55,
+   0.4,
+   -1.0,
+   1.0,
+   -0.2,
+   0.3
+  ]
+ },
+ "Q": null
+}

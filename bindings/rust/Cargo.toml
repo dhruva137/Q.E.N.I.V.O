@@ -1,0 +1,13 @@
+[package]
+name = "qenivo"
+version = "0.1.0"
+edition = "2021"
+description = "Safe wrapper around the Qenivo C ABI"
+license = "MIT"
+
+[lib]
+path = "src/lib.rs"
+
+[[example]]
+name = "bounded"
+path = "examples/bounded.rs"

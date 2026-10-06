@@ -1,0 +1,80 @@
+/* QENIVO console tokens. Local faces only; the page CSP allows no remote style. */
+
+.lab {
+  color-scheme: light;
+  --paper: #faf8f5;
+  --paper-2: #f3f0ea;
+  --ink: #141414;
+  --ink-2: #3a3a3a;
+  --mute: #6b6b6b;
+  --hair: rgba(20, 20, 20, 0.22);
+  --accent: #c8102e;
+  --teal: #0f766e;
+  --orange: #e0632a;
+  --indigo: #3f3d8f;
+  --display: "Palatino Linotype", Palatino, Georgia, "Iowan Old Style", serif;
+  --ui: "Segoe UI", "Noto Sans", sans-serif;
+  --mono: "Cascadia Mono", "Cascadia Code", Consolas, monospace;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #171717;
+  --line: #e5e5e5;
+  --accent: #c8102e;
+  --accent-weak: #fdecef;
+  --ok: #0c6b45;
+  --ok-weak: #e7f6ee;
+  --warn: #8a5a00;
+  --warn-weak: #fbf3e4;
+  --bad: #9f1239;
+  --bad-weak: #fde8ec;
+  --info: #1e4e79;
+  --info-weak: #eef3f8;
+  --radius: 8px;
+  --radius-input: 6px;
+  --display: "Palatino Linotype", Palatino, Georgia, "Iowan Old Style", serif;
+  --sans: "Segoe UI", "Noto Sans", sans-serif;
+  --mono: "Cascadia Mono", "Cascadia Code", Consolas, monospace;
+
+  --chassis: var(--surface);
+  --panel: var(--surface);
+  --panel2: var(--bg);
+  --line2: var(--line);
+  --ink: var(--text);
+  --muted: #4d4d4d;
+  --dim: #5e5e5e;
+  --sig: var(--accent);
+  --sig-dim: var(--accent-weak);
+  --amber: var(--warn);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #141414;
+  --surface: #1b1b1b;
+  --text: #f3f1ec;
+  --line: #2e2e2e;
+  --accent: #c8102e;
+  --accent-weak: #3a1c22;
+  --ok: #8fceb4;
+  --ok-weak: #16241e;
+  --warn: #e2b56a;
+  --warn-weak: #2a2216;
+  --bad: #f0a8b0;
+  --bad-weak: #2c181c;
+  --info: #a9c3dc;
+  --info-weak: #1a242e;
+  --chassis: #171717;
+  --panel: #1b1b1b;
+  --panel2: #141414;
+  --line2: #3a3a3a;
+  --ink: #f3f1ec;
+  --muted: #c8c6c1;
+  --dim: #9c9c9c;
+  --sig: #c8102e;
+  --sig-dim: #3a1c22;
+  --amber: #e2b56a;
+}

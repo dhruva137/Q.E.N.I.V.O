@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.hypothesis/
+*.egg-info/
+build/
+dist/
+/site/
+.venv/
+bench/instances/
+bench/results/*.tmp
+*.cert.json
+!tests/data/*.mps
+dist/
+bench/results/smoke/
+runs/
+dist/
+demo/video/*
+!demo/video/.gitkeep
+
+# Disposable upstream reads for W13 (never commit)
+_survey_cache/
+

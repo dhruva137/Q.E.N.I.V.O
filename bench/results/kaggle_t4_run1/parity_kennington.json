@@ -1,0 +1,1118 @@
+{
+ "meta": {
+  "utc": "2026-09-30T06:39:50+00:00",
+  "nirnay": "0.1.0",
+  "commit": "",
+  "dirty": false,
+  "argv": [
+   "--instances",
+   "ken-07,ken-11,ken-13,ken-18,osa-07,osa-14,osa-30,osa-60,pds-02,pds-06,pds-10,pds-20,cre-a,cre-b,cre-c,cre-d",
+   "--tol",
+   "1e-6",
+   "--time-limit",
+   "150",
+   "--jobs",
+   "4",
+   "--out-file",
+   "/kaggle/working/epochzero_results/kaggle_t4_run1/parity_kennington.json"
+  ],
+  "tol": 1e-06,
+  "time_limit": 150.0,
+  "engine": "auto",
+  "python": "3.12.13",
+  "numpy": "2.0.2",
+  "scipy": "1.16.3",
+  "highspy": "installed",
+  "platform": "Linux-6.12.90+-x86_64-with-glibc2.35",
+  "cpu": "x86_64",
+  "cpu_count": 4,
+  "gpu": {
+   "gpu": "Tesla T4",
+   "gpu_mem_bytes": 15636037632,
+   "compute_capability": "7.5",
+   "cuda_runtime": 12090,
+   "cupy": "14.0.1"
+  },
+  "comparator_threads": 1
+ },
+ "runs": [
+  {
+   "instance": "cre-a",
+   "nirnay": {
+    "rows": 3516,
+    "cols": 4067,
+    "nnz": 14987,
+    "read_time": 0.06984385300029317,
+    "solve_time": 6.434286780999628,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 23595370.438516267,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 18624,
+    "residuals": {
+     "objective": 23595370.438516267,
+     "dual_objective": 23595406.702132553,
+     "rel_primal": 7.115095405691808e-07,
+     "rel_dual": 1.8348925671501853e-08,
+     "rel_gap": 7.684470931616553e-07,
+     "max_rel": 7.684470931616553e-07,
+     "primal_res": 0.0035443534722159257,
+     "dual_res": 0.03454203236599712,
+     "gap": 36.263616286218166
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "3516x4067 vs 3516x4067"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "7.115e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "1.835e-08"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "7.684e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "23595370.4385 vs 23595370.4385"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 7.615598752000096
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 23595407.06097162,
+    "time": 0.16189818600014405
+   },
+   "rel_obj_diff": 1.5521009537171744e-06
+  },
+  {
+   "instance": "cre-b",
+   "nirnay": {
+    "rows": 9648,
+    "cols": 72447,
+    "nnz": 256095,
+    "read_time": 1.2090109179998763,
+    "solve_time": 34.912167660999785,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 23129713.444920808,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "256095 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 62336,
+    "residuals": {
+     "objective": 23129713.444920808,
+     "dual_objective": 23129735.677488886,
+     "rel_primal": 9.232650565865934e-07,
+     "rel_dual": 4.4107668331787523e-07,
+     "rel_gap": 4.806059738910044e-07,
+     "max_rel": 9.232650565865934e-07,
+     "primal_res": 0.0048693360649949115,
+     "dual_res": 1.0675253133975176,
+     "gap": 22.232568077743053
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "9648x72447 vs 9648x72447"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "9.233e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "4.411e-07"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "4.806e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "23129713.4449 vs 23129713.4449"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 38.23936225200032
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 23129639.88683238,
+    "time": 2.1949625070001275
+   },
+   "rel_obj_diff": 3.1802520752126563e-06
+  },
+  {
+   "instance": "cre-c",
+   "nirnay": {
+    "rows": 3068,
+    "cols": 3678,
+    "nnz": 13244,
+    "read_time": 0.06889477999993687,
+    "solve_time": 3.4065703979999853,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 25275107.380642947,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 9408,
+    "residuals": {
+     "objective": 25275107.380642947,
+     "dual_objective": 25275115.86572834,
+     "rel_primal": 9.54728039232794e-07,
+     "rel_dual": 2.3708395043793294e-08,
+     "rel_gap": 1.6785455496456204e-07,
+     "max_rel": 9.54728039232794e-07,
+     "primal_res": 0.004721664744400047,
+     "dual_res": 0.032096352812790524,
+     "gap": 8.485085394233465
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "3068x3678 vs 3068x3678"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "9.547e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "2.371e-08"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "1.679e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "25275107.3806 vs 25275107.3806"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 4.570252713999707
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 25275116.14088022,
+    "time": 0.15919229100018129
+   },
+   "rel_obj_diff": 3.4659531839161785e-07
+  },
+  {
+   "instance": "cre-d",
+   "nirnay": {
+    "rows": 8926,
+    "cols": 69980,
+    "nnz": 242646,
+    "read_time": 1.0990672300004007,
+    "solve_time": 56.21102974899986,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 24454992.136503223,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "242646 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 172224,
+    "residuals": {
+     "objective": 24454992.136503223,
+     "dual_objective": 24455021.74741413,
+     "rel_primal": 9.848696534082826e-07,
+     "rel_dual": 4.831738849277135e-07,
+     "rel_gap": 6.054161091070211e-07,
+     "max_rel": 9.848696534082826e-07,
+     "primal_res": 0.005160862860562508,
+     "dual_res": 0.8411677265672228,
+     "gap": 29.610910907387733
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "8926x69980 vs 8926x69980"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "9.849e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "4.832e-07"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "6.054e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "24454992.1365 vs 24454992.1365"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 59.2663101170001
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 24454969.76454924,
+    "time": 1.1931460939999852
+   },
+   "rel_obj_diff": 9.148223564957598e-07
+  },
+  {
+   "instance": "ken-07",
+   "nirnay": {
+    "rows": 2426,
+    "cols": 3602,
+    "nnz": 8404,
+    "read_time": 0.07404960799976834,
+    "solve_time": 22.673602093000227,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": -679520438.0741303,
+    "engine": "ipm",
+    "backend": "numpy",
+    "reason": "2426 rows <= 3000: interior point, few accurate iterations",
+    "ladder": null,
+    "iterations": 14,
+    "residuals": {
+     "objective": -679520438.0741303,
+     "dual_objective": -679520446.6510053,
+     "rel_primal": 5.567679364210981e-11,
+     "rel_dual": 0.0,
+     "rel_gap": 6.310976410995507e-09,
+     "max_rel": 6.310976410995507e-09,
+     "primal_res": 4.0705497291007424e-07,
+     "dual_res": 0.0,
+     "gap": 8.57687497138977
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "2426x3602 vs 2426x3602"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "5.568e-11"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "0.000e+00"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "6.311e-09"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "-679520438.074 vs -679520438.074"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 23.904769552999824
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": -679520443.3816886,
+    "time": 0.08699401700005183
+   },
+   "rel_obj_diff": 7.810741151343036e-09
+  },
+  {
+   "instance": "ken-11",
+   "nirnay": {
+    "rows": 14694,
+    "cols": 21349,
+    "nnz": 49058,
+    "read_time": 0.4469013889997768,
+    "solve_time": 17.421731140000247,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": -6972382260.160703,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 11328,
+    "residuals": {
+     "objective": -6972382260.160703,
+     "dual_objective": -6972395914.344607,
+     "rel_primal": 1.1729360383000202e-09,
+     "rel_dual": 0.0,
+     "rel_gap": 9.791610689535438e-07,
+     "max_rel": 9.791610689535438e-07,
+     "primal_res": 4.5644301535622947e-05,
+     "dual_res": 0.0,
+     "gap": 13654.183904647827
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "14694x21349 vs 14694x21349"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "1.173e-09"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "0.000e+00"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "9.792e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "-6972382260.16 vs -6972382260.16"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 20.281556592000015
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": -6972382262.519994,
+    "time": 0.7015613919998032
+   },
+   "rel_obj_diff": 3.383766103881219e-10
+  },
+  {
+   "instance": "ken-13",
+   "nirnay": {
+    "rows": 28632,
+    "cols": 42659,
+    "nnz": 97246,
+    "read_time": 1.2919670419996692,
+    "solve_time": 152.76454094600012,
+    "verdict": "not_proven",
+    "status": "time_limit",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 72576,
+    "residuals": {
+     "objective": -10270616706.073402,
+     "dual_objective": -52945596340.97575,
+     "rel_primal": 0.07282109727932158,
+     "rel_dual": 0.0,
+     "rel_gap": 0.6750638416519209,
+     "max_rel": 0.6750638416519209,
+     "primal_res": 5402.226058480426,
+     "dual_res": 0.0,
+     "gap": 42674979634.90235
+    },
+    "verified": false,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "28632x42659 vs 28632x42659"
+     ],
+     [
+      "verdict is a proven one",
+      false,
+      "verdict 'not_proven' proves nothing"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 156.24392542400028
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": -10257394789.48247,
+    "time": 1.5618950729999597
+   }
+  },
+  {
+   "instance": "ken-18",
+   "nirnay": {
+    "rows": 105127,
+    "cols": 154699,
+    "nnz": 358171,
+    "read_time": 5.662306274999992,
+    "solve_time": 153.32862279600022,
+    "verdict": "not_proven",
+    "status": "time_limit",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "358171 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 141056,
+    "residuals": {
+     "objective": -52242692020.667145,
+     "dual_objective": -729859347440.2937,
+     "rel_primal": 0.02879851305121586,
+     "rel_dual": 0.0,
+     "rel_gap": 0.8664044091814236,
+     "max_rel": 0.8664044091814236,
+     "primal_res": 8258.948078457777,
+     "dual_res": 0.0,
+     "gap": 677616655419.6266
+    },
+    "verified": false,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "105127x154699 vs 105127x154699"
+     ],
+     [
+      "verdict is a proven one",
+      false,
+      "verdict 'not_proven' proves nothing"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 164.02573594900014
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": -52217025287.396805,
+    "time": 7.827061425000011
+   }
+  },
+  {
+   "instance": "osa-07",
+   "nirnay": {
+    "rows": 1118,
+    "cols": 23949,
+    "nnz": 143694,
+    "read_time": 0.7642261010000766,
+    "solve_time": 4.895021036999879,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 535722.7138745706,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "143694 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 6656,
+    "residuals": {
+     "objective": 535722.7138745706,
+     "dual_objective": 535722.8909750014,
+     "rel_primal": 3.178526205022088e-08,
+     "rel_dual": 5.735922292841149e-07,
+     "rel_gap": 1.6529095339254753e-07,
+     "max_rel": 5.735922292841149e-07,
+     "primal_res": 0.0019356481217930094,
+     "dual_res": 0.22970725787789847,
+     "gap": 0.17710043082479388
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "1118x23949 vs 1118x23949"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "3.179e-08"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "5.736e-07"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "1.653e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "535722.713875 vs 535722.713875"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 7.592840055000124
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 535722.517299351,
+    "time": 0.7428122860001167
+   },
+   "rel_obj_diff": 3.669340866368594e-07
+  },
+  {
+   "instance": "osa-14",
+   "nirnay": {
+    "rows": 2337,
+    "cols": 52460,
+    "nnz": 314760,
+    "read_time": 1.3101847340003587,
+    "solve_time": 9.473729264999747,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 1106460.7953359622,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "314760 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 11392,
+    "residuals": {
+     "objective": 1106460.7953359622,
+     "dual_objective": 1106462.8206815817,
+     "rel_primal": 4.9790463332327175e-09,
+     "rel_dual": 5.648576592075107e-07,
+     "rel_gap": 9.152348005328606e-07,
+     "max_rel": 9.152348005328606e-07,
+     "primal_res": 0.0006064211461213588,
+     "dual_res": 0.33179679364938003,
+     "gap": 2.0253456195350736
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "2337x52460 vs 2337x52460"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "4.979e-09"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "5.649e-07"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "9.152e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "1106460.79534 vs 1106460.79534"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 13.766080679999959
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 1106462.8447362536,
+    "time": 2.519790485000158
+   },
+   "rel_obj_diff": 1.8522071924493214e-06
+  },
+  {
+   "instance": "osa-30",
+   "nirnay": {
+    "rows": 4350,
+    "cols": 100024,
+    "nnz": 600138,
+    "read_time": 2.446865725999942,
+    "solve_time": 13.440687939999862,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 2142138.0185459917,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "600138 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 10368,
+    "residuals": {
+     "objective": 2142138.0185459917,
+     "dual_objective": 2142140.043204454,
+     "rel_primal": 1.4056158089004921e-08,
+     "rel_dual": 5.10698021398007e-07,
+     "rel_gap": 4.7257856756078177e-07,
+     "max_rel": 5.10698021398007e-07,
+     "primal_res": 0.00366846913242338,
+     "dual_res": 0.4149792059812702,
+     "gap": 2.0246584620326757
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "4350x100024 vs 4350x100024"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "1.406e-08"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "5.107e-07"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "4.726e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "2142138.01855 vs 2142138.01855"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 20.490547867999794
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 2142139.873209765,
+    "time": 7.7370280479999565
+   },
+   "rel_obj_diff": 8.657991622468847e-07
+  },
+  {
+   "instance": "osa-60",
+   "nirnay": {
+    "rows": 10280,
+    "cols": 232966,
+    "nnz": 1397793,
+    "read_time": 5.813820588999988,
+    "solve_time": 38.643274723000104,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 4044080.50774055,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "1397793 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 14336,
+    "residuals": {
+     "objective": 4044080.50774055,
+     "dual_objective": 4044072.4301523566,
+     "rel_primal": 3.3678677926430335e-08,
+     "rel_dual": 4.5903379512394035e-08,
+     "rel_gap": 9.98693676654796e-07,
+     "max_rel": 9.98693676654796e-07,
+     "primal_res": 0.017579323784415523,
+     "dual_res": 0.057571053687036126,
+     "gap": 8.077588193584234
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "10280x232966 vs 10280x232966"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "3.368e-08"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "4.590e-08"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "9.987e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "4044080.50774 vs 4044080.50774"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 58.533415080000395
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 4044072.5031574406,
+    "time": 37.23366590199976
+   },
+   "rel_obj_diff": 1.9793367018146978e-06
+  },
+  {
+   "instance": "pds-02",
+   "nirnay": {
+    "rows": 2953,
+    "cols": 7535,
+    "nnz": 16390,
+    "read_time": 0.08751842799983933,
+    "solve_time": 54.564325072999964,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 28857883925.593227,
+    "engine": "ipm",
+    "backend": "numpy",
+    "reason": "2953 rows <= 3000: interior point, few accurate iterations",
+    "ladder": null,
+    "iterations": 23,
+    "residuals": {
+     "objective": 28857883925.593227,
+     "dual_objective": 28857854660.390656,
+     "rel_primal": 5.1288450228830596e-08,
+     "rel_dual": 0.0,
+     "rel_gap": 5.070575771591843e-07,
+     "max_rel": 5.070575771591843e-07,
+     "primal_res": 0.008595000643852647,
+     "dual_res": 0.0,
+     "gap": 29265.202571868896
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "2953x7535 vs 2953x7535"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "5.129e-08"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "0.000e+00"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "5.071e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "28857883925.6 vs 28857883925.6"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 55.73915671499981
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 28857862010.0,
+    "time": 0.2833426090001012
+   },
+   "rel_obj_diff": 7.594323245094428e-07
+  },
+  {
+   "instance": "pds-06",
+   "nirnay": {
+    "rows": 9881,
+    "cols": 28655,
+    "nnz": 62524,
+    "read_time": 0.33983204700007263,
+    "solve_time": 6.793172889999823,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 27761082236.011036,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 4480,
+    "residuals": {
+     "objective": 27761082236.011036,
+     "dual_objective": 27761035664.78871,
+     "rel_primal": 2.501639204163776e-07,
+     "rel_dual": 4.924705998188335e-08,
+     "rel_gap": 8.387868489948532e-07,
+     "max_rel": 8.387868489948532e-07,
+     "primal_res": 0.04220057010416373,
+     "dual_res": 0.04564870162537633,
+     "gap": 46571.22232437134
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "9881x28655 vs 9881x28655"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "2.502e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "4.925e-08"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "8.388e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "27761082236 vs 27761082236"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 8.950758861000395
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 27761037600.0,
+    "time": 1.1150365339999553
+   },
+   "rel_obj_diff": 1.6078653715130347e-06
+  },
+  {
+   "instance": "pds-10",
+   "nirnay": {
+    "rows": 16558,
+    "cols": 48763,
+    "nnz": 106436,
+    "read_time": 0.5835742900003424,
+    "solve_time": 3.7987663189996965,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 26727052090.237804,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "106436 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 4992,
+    "residuals": {
+     "objective": 26727052090.237804,
+     "dual_objective": 26727096431.265984,
+     "rel_primal": 2.8975098016578967e-07,
+     "rel_dual": 3.450336812092424e-08,
+     "rel_gap": 8.295151902101943e-07,
+     "max_rel": 8.295151902101943e-07,
+     "primal_res": 0.049188397262998854,
+     "dual_res": 0.03202511251322068,
+     "gap": 44341.0281791687
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "16558x48763 vs 16558x48763"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "2.898e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "3.450e-08"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "8.295e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "26727052090.2 vs 26727052090.2"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 6.7703155889998925
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 26727094976.0,
+    "time": 1.7946684610001284
+   },
+   "rel_obj_diff": 1.6045800051405698e-06
+  },
+  {
+   "instance": "pds-20",
+   "nirnay": {
+    "rows": 33874,
+    "cols": 105728,
+    "nnz": 230200,
+    "read_time": 1.2385322830000405,
+    "solve_time": 9.331208377000166,
+    "verdict": "optimal",
+    "status": "optimal",
+    "objective": 23821614755.414703,
+    "engine": "pdhg",
+    "backend": "cupy",
+    "reason": "230200 nonzeros >= 100000: GPU first-order wins at this size",
+    "ladder": null,
+    "iterations": 8768,
+    "residuals": {
+     "objective": 23821614755.414703,
+     "dual_objective": 23821658135.277767,
+     "rel_primal": 7.10820279764054e-07,
+     "rel_dual": 2.720406735392463e-08,
+     "rel_gap": 9.105139179339708e-07,
+     "max_rel": 9.105139179339708e-07,
+     "primal_res": 0.12265346045864457,
+     "dual_res": 0.025334900205617798,
+     "gap": 43379.863063812256
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "33874x105728 vs 33874x105728"
+     ],
+     [
+      "every column has a value",
+      true,
+      "0 missing"
+     ],
+     [
+      "primal feasible within tolerance",
+      true,
+      "7.108e-07"
+     ],
+     [
+      "dual feasible within tolerance",
+      true,
+      "2.720e-08"
+     ],
+     [
+      "duality gap within tolerance",
+      true,
+      "9.105e-07"
+     ],
+     [
+      "objective matches certificate",
+      true,
+      "23821614755.4 vs 23821614755.4"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 14.814834711000003
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": 23821658640.0,
+    "time": 4.609772757000428
+   },
+   "rel_obj_diff": 1.8422136744542254e-06
+  }
+ ]
+}

@@ -1,0 +1,55 @@
+site_name: QENIVO
+site_description: Sovereign, certified optimisation engine for LP, MILP and convex QP
+site_url: https://dhruva137.github.io/Q.E.N.I.V.O/
+repo_url: https://github.com/dhruva137/Q.E.N.I.V.O
+repo_name: dhruva137/Q.E.N.I.V.O
+docs_dir: docs/site
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+  features:
+    - navigation.sections
+    - content.code.copy
+    - search.suggest
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
+            show_source: false
+            members_order: source
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.snippets:
+      base_path:
+        - docs
+      check_paths: true
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Architecture: survey.md
+  - Ground reality: ground_reality.md
+  - CLI reference: cli.md
+  - Python API: api.md
+  - Engines: engines.md
+  - Certificates: certificates.md
+  - Plugin engines: plugins.md
+  - Benchmarks: benchmarks.md
+  - Deployment: deployment.md

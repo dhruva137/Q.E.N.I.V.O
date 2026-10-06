@@ -1,0 +1,3 @@
+useDynLib(qenivo, .registration = TRUE)
+export(bounded_lp)
+export(two_binary)

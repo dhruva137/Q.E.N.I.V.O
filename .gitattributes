@@ -1,0 +1,35 @@
+# Open-core: omit private candidates from git archive / export bundles.
+# Paths are reserved even before the files exist (W02–W06 / MRPL).
+
+src/qenivo_pro/ export-ignore
+pro/ export-ignore
+src/qenivo/workload/parametric.py export-ignore
+src/qenivo/workload/breakpoints.py export-ignore
+src/qenivo/workload/crude_value.py export-ignore
+src/qenivo/engines/parametric_simplex.py export-ignore
+research_prototypes/stack_simplex/ export-ignore
+src/qenivo/engines/stack_simplex.py export-ignore
+research_prototypes/mixed_precision/ export-ignore
+src/qenivo/engines/mixed_precision.py export-ignore
+src/qenivo/native/mixed_precision/ export-ignore
+src/qenivo/workload/router_thresholds_pro.py export-ignore
+src/qenivo/workload/router_policy_pro.json export-ignore
+src/qenivo/models/mrpl/ export-ignore
+data/mrpl/ export-ignore
+data/twin/ export-ignore
+bench/instances/mrpl/ export-ignore
+
+# Internal team material and work in progress (clone the repo to get them; a ZIP download omits them).
+CLAUDE_INSTRUCTION_MANUAL/ export-ignore
+CURSOR_PROGRAM/ export-ignore
+wip/ export-ignore
+
+# W02 tests follow their modules out of the public tree.
+tests/test_parametric.py export-ignore
+tests/test_breakpoints.py export-ignore
+tests/test_crude_value.py export-ignore
+tests/test_mrpl_twin.py export-ignore
+bench/twin_replay.py export-ignore
+bench/crude_value_bench.py export-ignore
+bench/results/crude_value* export-ignore
+bench/results/twin_replay* export-ignore

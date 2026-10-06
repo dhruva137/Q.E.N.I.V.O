@@ -1,0 +1,38 @@
+{
+ "model": "refinery L2 (1272 rows, 2664 cols)",
+ "cases": 32,
+ "engine": "ipm",
+ "cpu_count": 16,
+ "rows": [
+  {
+   "workers": 1,
+   "wall": 40.95335419999901,
+   "certified": 32,
+   "max_obj_diff_vs_1core": 0.0
+  },
+  {
+   "workers": 2,
+   "wall": 24.67306770000141,
+   "certified": 32,
+   "max_obj_diff_vs_1core": 0.0
+  },
+  {
+   "workers": 4,
+   "wall": 15.25505290000001,
+   "certified": 32,
+   "max_obj_diff_vs_1core": 0.0
+  },
+  {
+   "workers": 8,
+   "wall": 12.844413699996949,
+   "certified": 32,
+   "max_obj_diff_vs_1core": 0.0
+  },
+  {
+   "workers": 16,
+   "wall": 12.53124740000203,
+   "certified": 32,
+   "max_obj_diff_vs_1core": 0.0
+  }
+ ]
+}

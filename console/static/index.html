@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QENIVO planner</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <p class="eyebrow">Planner console</p>
+    <h1>QENIVO</h1>
+  </div>
+  <p id="api-status" class="status">Checking the solver API…</p>
+  <label>Bearer token
+    <input id="token" type="password" autocomplete="off" spellcheck="false">
+  </label>
+  <label>X-QENIVO-User
+    <input id="user" type="text" autocomplete="off" spellcheck="false">
+  </label>
+</header>
+<nav class="tabs" aria-label="Planner views">
+  <button type="button" data-view="library" aria-current="page">Case library</button>
+  <button type="button" data-view="history">Run history</button>
+  <button type="button" data-view="compare">Plan comparison</button>
+  <button type="button" data-view="value">Crude valuation</button>
+  <button type="button" data-view="explain">Infeasibility</button>
+  <button type="button" data-view="certificate">Certificate</button>
+</nav>
+
+<section class="workspace" id="workspace">
+  <div class="workspace-head">
+    <h2>Workspace model</h2>
+    <p id="model-meta">No model loaded.</p>
+  </div>
+  <div class="row">
+    <label class="file">Open MPS or GAMS
+      <input id="model-file" type="file" accept=".mps,.gms,.txt,.gz">
+    </label>
+    <button type="button" id="sample-optimal">Load diesel week sample</button>
+    <button type="button" id="sample-infeasible">Load bound conflict sample</button>
+  </div>
+  <div class="row fields">
+    <label>Engine
+      <input id="engine" list="engines" value="auto" spellcheck="false">
+      <datalist id="engines">
+        <option value="auto"></option>
+        <option value="simplex"></option>
+        <option value="ipm"></option>
+        <option value="pdhg"></option>
+        <option value="pdhg-rf"></option>
+        <option value="pdqp"></option>
+        <option value="milp"></option>
+        <option value="miqp"></option>
+      </datalist>
+    </label>
+    <label>Tolerance
+      <input id="tol" value="1e-6" inputmode="decimal" spellcheck="false">
+    </label>
+    <label>Backend
+      <select id="backend">
+        <option value="auto">auto</option>
+        <option value="numpy">numpy</option>
+        <option value="cupy">cupy</option>
+      </select>
+    </label>
+    <label>Format
+      <select id="format">
+        <option value="">auto</option>
+        <option value="mps">mps</option>
+        <option value="gams">gams</option>
+      </select>
+    </label>
+  </div>
+  <p class="note">Engine, tolerance and backend are sent as engine, tol and backend. Format is omitted on auto; the server then treats the text as GAMS when it contains “Solve ” and “..”, and as MPS otherwise.</p>
+  <textarea id="model-text" spellcheck="false" hidden aria-label="Model text"></textarea>
+</section>
+<p id="notice" class="notice" hidden></p>
+
+<main>
+  <section id="view-library">
+    <h2>Case library</h2>
+    <p class="note">These generators are the LIBRARY dict in industry.py. Serve routes are /api/info, /api/solve, /api/explain, /api/verify, /api/cases and /api/range. This registry is the local manifest of that file. Write an MPS with the command, then open it in the workspace.</p>
+    <h3>This server</h3>
+    <div id="server-info"></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Class</th><th>Sector</th><th>Summary</th></tr></thead>
+        <tbody id="library-body"></tbody>
+      </table>
+    </div>
+    <div id="library-detail"></div>
+  </section>
+
+  <section id="view-history" hidden>
+    <h2>Run history</h2>
+    <p class="note">Open the monthly audit-YYYY-MM.jsonl written when serve is started with --audit-dir. Each line is one JSON object: utc, event, path, user, auth, client, model_sha256, engine_requested, status, verdict, objective, engine, seconds, and error or reason on failures.</p>
+    <div class="row">
+      <label class="file">Audit JSONL
+        <input id="audit-file" type="file" accept=".jsonl,.txt,application/json" multiple>
+      </label>
+      <label>Filter
+        <input id="history-filter" type="search" spellcheck="false">
+      </label>
+    </div>
+    <p id="history-meta" class="note">no file · 0 lines</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>utc</th><th>event</th><th>path</th><th>user</th><th>auth</th><th>client</th>
+            <th>verdict</th><th>objective</th><th>engine</th><th>seconds</th><th>status</th>
+            <th>model_sha256</th><th>error</th><th>reason</th>
+          </tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="view-compare" hidden>
+    <h2>Plan comparison</h2>
+    <p class="note">Solve the workspace model into plan A and plan B. POST /api/solve returns top_values and marginals, each the 25 largest by magnitude. The change list ranks those marginals by absolute difference (B − A). A row present on only one side is marked absent on the other.</p>
+    <div class="row">
+      <button type="button" class="go" id="solve-a">Solve into plan A</button>
+      <button type="button" class="go" id="solve-b">Solve into plan B</button>
+      <button type="button" id="use-cert-a">Certificate from A</button>
+      <button type="button" id="use-cert-b">Certificate from B</button>
+    </div>
+    <div id="compare-summary"></div>
+    <div class="plans">
+      <div id="plan-a" class="sheet"></div>
+      <div id="plan-b" class="sheet"></div>
+    </div>
+    <h3>Largest marginal-value changes</h3>
+    <div id="compare-delta"></div>
+  </section>
+
+  <section id="view-value" hidden>
+    <h2>Crude valuation</h2>
+    <p class="note">POST /api/crude-value. Live curve needs branch <code>w02-crude-value</code> merged; until then the API returns <code>needs w02 merge</code>.</p>
+    <div class="row fields">
+      <label>Column / cargo
+        <input id="value-col" value="crude_light" spellcheck="false">
+      </label>
+      <label>t_lo
+        <input id="value-tlo" value="-0.2" inputmode="decimal" spellcheck="false">
+      </label>
+      <label>t_hi
+        <input id="value-thi" value="0.2" inputmode="decimal" spellcheck="false">
+      </label>
+      <button type="button" class="go" id="go-value">Value cargo</button>
+    </div>
+    <div id="value-out"></div>
+  </section>
+
+  <section id="view-explain" hidden>
+    <h2>Infeasibility</h2>
+    <p class="note">POST /api/explain returns feasible, kind, items, total_relaxation, conflict_rows, farkas_check, proof and text.</p>
+    <button type="button" class="go" id="go-explain">Explain workspace model</button>
+    <div id="explain-out"></div>
+  </section>
+
+  <section id="view-certificate" hidden>
+    <h2>Certificate</h2>
+    <p class="note">The certificate field on a solve response follows schema qenivo.certificate/1. Open a JSON file to pretty-print verdict, residuals and engine. Verify posts that object with the workspace model to POST /api/verify.</p>
+    <div class="row">
+      <label class="file">Certificate JSON
+        <input id="cert-file" type="file" accept=".json,application/json">
+      </label>
+      <label class="checkline"><input id="verify-exact" type="checkbox"> exact rational arithmetic</label>
+      <button type="button" class="go" id="go-verify">Verify</button>
+    </div>
+    <div id="cert-summary"></div>
+    <pre id="cert-json" class="json"></pre>
+    <div id="verify-out"></div>
+  </section>
+</main>
+<footer>
+  <p>Start the solver with <code>qenivo serve --host 127.0.0.1 --port 8765</code>. Optional flags: <code>--token-file</code>, <code>--proxy-user-header</code>, <code>--trusted-proxy</code>, <code>--audit-dir</code>, <code>--retention-days</code>.</p>
+</footer>
+<script type="module" src="./js/browser/main.js"></script>
+</body>
+</html>

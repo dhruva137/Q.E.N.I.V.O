@@ -1,0 +1,87 @@
+{
+  "commit": "596da5add17968b623e739a5e7df51340417ddce",
+  "machine": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+    "python": "3.13.11",
+    "machine": "AMD64"
+  },
+  "native_status": "ok",
+  "note": "Target instances pds-100/savsched1/rmine15 not on disk. Measured on largest local bench/instances/*.mps plus a generated synth_large.mps. 10x target not reached on this machine/files; recorded ratios are measured.",
+  "missing_targets": [
+    "pds-100",
+    "savsched1",
+    "rmine15"
+  ],
+  "results": [
+    {
+      "file": "maros-r7.mps",
+      "bytes": 4892894,
+      "m": 3136,
+      "n": 9408,
+      "nnz": 144848,
+      "python_s": 0.429459,
+      "native_s": 0.21239,
+      "speedup": 2.022,
+      "arrays_equal": true
+    },
+    {
+      "file": "fit2d.mps",
+      "bytes": 4780670,
+      "m": 25,
+      "n": 10500,
+      "nnz": 129018,
+      "python_s": 0.380791,
+      "native_s": 0.12817,
+      "speedup": 2.971,
+      "arrays_equal": true
+    },
+    {
+      "file": "gosh.mps",
+      "bytes": 3760900,
+      "m": 3792,
+      "n": 10733,
+      "nnz": 97231,
+      "python_s": 0.412735,
+      "native_s": 0.155026,
+      "speedup": 2.662,
+      "arrays_equal": true
+    },
+    {
+      "file": "qap15.mps",
+      "bytes": 3636781,
+      "m": 6330,
+      "n": 22275,
+      "nnz": 94950,
+      "python_s": 0.434201,
+      "native_s": 0.142309,
+      "speedup": 3.051,
+      "arrays_equal": true
+    },
+    {
+      "file": "bgindy.mps",
+      "bytes": 2955691,
+      "m": 2671,
+      "n": 10116,
+      "nnz": 65502,
+      "python_s": 0.288204,
+      "native_s": 0.098408,
+      "speedup": 2.929,
+      "arrays_equal": true
+    },
+    {
+      "file": "_synth_large.mps",
+      "bytes": 3115487,
+      "m": 5000,
+      "n": 8000,
+      "nnz": 79927,
+      "python_s": 0.400042,
+      "native_s": 0.204148,
+      "speedup": 1.96,
+      "arrays_equal": true,
+      "note": "generated locally; not a Netlib/MIPLIB file",
+      "file_removed_after_bench": true
+    }
+  ],
+  "branch": "t2-fast-io"
+}

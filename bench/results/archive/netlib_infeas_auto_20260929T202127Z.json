@@ -1,0 +1,1306 @@
+{
+ "meta": {
+  "utc": "2026-09-29T20:21:27+00:00",
+  "nirnay": "0.1.0",
+  "commit": "62a043070b5c17c00556ff4afef5b9be1d658de3",
+  "dirty": true,
+  "argv": [
+   "--set",
+   "netlib_infeas",
+   "--tol",
+   "1e-6",
+   "--time-limit",
+   "120",
+   "--jobs",
+   "3"
+  ],
+  "tol": 1e-06,
+  "time_limit": 120.0,
+  "engine": "auto",
+  "python": "3.13.11",
+  "numpy": "2.4.4",
+  "scipy": "1.15.2",
+  "highspy": "installed",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+  "cpu_count": 16,
+  "gpu": {},
+  "comparator_threads": 1
+ },
+ "runs": [
+  {
+   "instance": "bgdbg1",
+   "nirnay": {
+    "rows": 348,
+    "cols": 407,
+    "nnz": 1440,
+    "read_time": 0.01286969999637222,
+    "solve_time": 221.8618634000013,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "348 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 228,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "348x407 vs 348x407"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 5.640e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "6.434e+01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "2.345e-17"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 224.44827040000382
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.00674050000088755
+   }
+  },
+  {
+   "instance": "bgetam",
+   "nirnay": {
+    "error": "killed at hard wall 240s",
+    "wall": 241.10425000000396
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.03402070000447566
+   }
+  },
+  {
+   "instance": "bgindy",
+   "nirnay": {
+    "rows": 2671,
+    "cols": 10116,
+    "nnz": 65502,
+    "read_time": 0.3404980000050273,
+    "solve_time": 207.83623229999648,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "fallback: ipm ended with stalled",
+    "ladder": [
+     "ipm",
+     "simplex",
+     "pdhg"
+    ],
+    "iterations": 512,
+    "residuals": {
+     "objective": 6857827.4373427285,
+     "dual_objective": 4.035320528262231e+19,
+     "rel_primal": 1.550035590706769,
+     "rel_dual": 1888.786658231566,
+     "rel_gap": 0.9999999999996602,
+     "max_rel": 1888.786658231566,
+     "primal_res": 106762.52800888603,
+     "dual_res": 67225348.67449449,
+     "gap": 4.035320528261545e+19
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "2671x10116 vs 2671x10116"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.000e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "4.549e+04"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "7.580e-08"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 215.10406109999894
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.6845161000019289
+   }
+  },
+  {
+   "instance": "bgprtr",
+   "nirnay": {
+    "rows": 20,
+    "cols": 34,
+    "nnz": 64,
+    "read_time": 0.007596299998112954,
+    "solve_time": 0.7192863000018406,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "20 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 32,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "20x34 vs 20x34"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 2.456e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "7.798e+00"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "2.260e-17"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 4.6313673999975435
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.00974329999735346
+   }
+  },
+  {
+   "instance": "box1",
+   "nirnay": {
+    "rows": 231,
+    "cols": 261,
+    "nnz": 651,
+    "read_time": 0.0083710000035353,
+    "solve_time": 4.498900699996739,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "231 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 300,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "231x261 vs 231x261"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.068e+01"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "9.366e-02"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 6.796931099997892
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.003995299994130619
+   }
+  },
+  {
+   "instance": "ceria3d",
+   "nirnay": {
+    "rows": 3576,
+    "cols": 824,
+    "nnz": 17602,
+    "read_time": 0.061755700000503566,
+    "solve_time": 1.5535059000030742,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 5440,
+    "residuals": {
+     "objective": -0.9989452742889546,
+     "dual_objective": 2890999377932.301,
+     "rel_primal": 0.005176472047472523,
+     "rel_dual": 30261.214317435664,
+     "rel_gap": 0.999999999999654,
+     "max_rel": 30261.214317435664,
+     "primal_res": 0.0946766857522029,
+     "dual_res": 73057.03401903206,
+     "gap": 2890999377933.3
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "3576x824 vs 3576x824"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.000e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "3.521e-02"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "3.278e-10"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 4.087066499996581
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.04042670000490034
+   }
+  },
+  {
+   "instance": "chemcom",
+   "nirnay": {
+    "rows": 288,
+    "cols": 720,
+    "nnz": 1566,
+    "read_time": 0.009807599999476224,
+    "solve_time": 11.986901000003854,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "288 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 368,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "288x720 vs 288x720"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.237e+01"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "7.942e+02"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 14.056258299999172
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.012820900003134739
+   }
+  },
+  {
+   "instance": "cplex1",
+   "nirnay": {
+    "rows": 3005,
+    "cols": 3221,
+    "nnz": 8944,
+    "read_time": 0.0423467999935383,
+    "solve_time": 0.5489647000067635,
+    "verdict": "unbounded",
+    "status": "unbounded",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 512,
+    "residuals": {
+     "objective": -6.885687703224038e+25,
+     "dual_objective": 3410883.0925236223,
+     "rel_primal": 1595801.4595682493,
+     "rel_dual": 0.944262744819151,
+     "rel_gap": 1.0,
+     "max_rel": 1595801.4595682493,
+     "primal_res": 153019933333120.53,
+     "dual_res": 31.622776601683793,
+     "gap": 6.885687703224038e+25
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "3005x3221 vs 3005x3221"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||d|| = 1.000e+00"
+     ],
+     [
+      "ray improves the objective",
+      true,
+      "9.959e+00"
+     ],
+     [
+      "ray stays feasible (violation << descent)",
+      true,
+      "2.213e-11"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 3.946369900004356
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.24201629999879515
+   }
+  },
+  {
+   "instance": "cplex2",
+   "nirnay": {
+    "error": "killed at hard wall 240s",
+    "wall": 240.60766960000183
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.04108119999727933
+   }
+  },
+  {
+   "instance": "ex72a",
+   "nirnay": {
+    "rows": 197,
+    "cols": 215,
+    "nnz": 467,
+    "read_time": 0.006629199997405522,
+    "solve_time": 1.9559884000045713,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "197 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 353,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "197x215 vs 197x215"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 9.381e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "1.066e-01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 6.323700599998119
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.004322100001445506
+   }
+  },
+  {
+   "instance": "ex73a",
+   "nirnay": {
+    "rows": 193,
+    "cols": 211,
+    "nnz": 457,
+    "read_time": 0.005082900002889801,
+    "solve_time": 1.6279947999937576,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "193 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 272,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "193x211 vs 193x211"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 4.899e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "2.041e-01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 3.8498394999987795
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.0029999999969732016
+   }
+  },
+  {
+   "instance": "forest6",
+   "nirnay": {
+    "rows": 66,
+    "cols": 95,
+    "nnz": 210,
+    "read_time": 0.004297200001019519,
+    "solve_time": 0.56861100000242,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "66 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 166,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "66x95 vs 66x95"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 2.007e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "3.981e+02"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "3.280e-17"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 2.699021000000357
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.003788899994106032
+   }
+  },
+  {
+   "instance": "galenet",
+   "nirnay": {
+    "rows": 8,
+    "cols": 8,
+    "nnz": 16,
+    "read_time": 0.003129199998511467,
+    "solve_time": 0.34310950000508456,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "8 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 15,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "8x8 vs 8x8"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.732e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "1.617e+01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 4.652994699994451
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.0008075999940047041
+   }
+  },
+  {
+   "instance": "gosh",
+   "nirnay": {
+    "rows": 3792,
+    "cols": 10733,
+    "nnz": 97231,
+    "read_time": 0.2866513999979361,
+    "solve_time": 98.25943009999901,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "large model without a GPU: matrix-free first-order method",
+    "ladder": null,
+    "iterations": 79552,
+    "residuals": {
+     "objective": 5.180675282344012,
+     "dual_objective": 116370728363001.64,
+     "rel_primal": 6.479152292569042e-05,
+     "rel_dual": 1918396.2193522525,
+     "rel_gap": 0.9999999999999023,
+     "max_rel": 1918396.2193522525,
+     "primal_res": 0.03434610669682081,
+     "dual_res": 11700335.976632012,
+     "gap": 116370728362996.45
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "3792x10733 vs 3792x10733"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.000e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "2.578e-02"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "2.304e-09"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 102.73519910000323
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.45341740000003483
+   }
+  },
+  {
+   "instance": "gran",
+   "nirnay": {
+    "error": "killed at hard wall 240s",
+    "wall": 240.86365639999713
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.0849367999981041
+   }
+  },
+  {
+   "instance": "greenbea",
+   "nirnay": {
+    "error": "killed at hard wall 240s",
+    "wall": 240.1637464999949
+   },
+   "highs": {
+    "status": "Optimal",
+    "objective": -72555248.12984587,
+    "time": 0.9440359000000171
+   }
+  },
+  {
+   "instance": "itest2",
+   "nirnay": {
+    "rows": 9,
+    "cols": 4,
+    "nnz": 17,
+    "read_time": 0.0047378000017488375,
+    "solve_time": 0.776643500001228,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "9 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 9,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "9x4 vs 9x4"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.674e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "2.668e+00"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 5.8601937999992515
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.0012563999989652075
+   }
+  },
+  {
+   "instance": "itest6",
+   "nirnay": {
+    "rows": 11,
+    "cols": 8,
+    "nnz": 20,
+    "read_time": 0.006003499998769257,
+    "solve_time": 0.5849334000013187,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "11 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 9,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "11x8 vs 11x8"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 2.241e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "9.125e+04"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 4.328408000001218
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.005994300001475494
+   }
+  },
+  {
+   "instance": "klein1",
+   "nirnay": {
+    "rows": 54,
+    "cols": 54,
+    "nnz": 696,
+    "read_time": 0.01825259999895934,
+    "solve_time": 1.187430600002699,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "54 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 179,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "54x54 vs 54x54"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.028e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "3.459e+00"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "7.153e-16"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 5.099079799998435
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.013174300001992378
+   }
+  },
+  {
+   "instance": "klein2",
+   "nirnay": {
+    "error": "killed at hard wall 240s",
+    "wall": 240.15335939999932
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.22588359999645036
+   }
+  },
+  {
+   "instance": "klein3",
+   "nirnay": {
+    "rows": 994,
+    "cols": 88,
+    "nnz": 12107,
+    "read_time": 0.11021929999697022,
+    "solve_time": 65.55003579999902,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "ipm",
+    "backend": "numpy",
+    "reason": "994 rows <= 3000: interior point, few accurate iterations",
+    "ladder": null,
+    "iterations": 122,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "994x88 vs 994x88"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 5.893e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "3.915e+01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "8.389e-15"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 72.16286470000341
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.12051950000022771
+   }
+  },
+  {
+   "instance": "mondou2",
+   "nirnay": {
+    "rows": 312,
+    "cols": 604,
+    "nnz": 1208,
+    "read_time": 0.031551499996567145,
+    "solve_time": 228.5671472000031,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "ipm",
+    "backend": "numpy",
+    "reason": "fallback: simplex did not finish",
+    "ladder": [
+     "simplex",
+     "ipm"
+    ],
+    "iterations": 13,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "312x604 vs 312x604"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.637e+01"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "1.062e+03"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 232.65210440000374
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.011524899993673898
+   }
+  },
+  {
+   "instance": "pang",
+   "nirnay": {
+    "rows": 361,
+    "cols": 460,
+    "nnz": 2652,
+    "read_time": 0.023388699999486562,
+    "solve_time": 150.4373118999938,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "fallback: simplex did not finish",
+    "ladder": [
+     "simplex",
+     "ipm",
+     "pdhg"
+    ],
+    "iterations": 63296,
+    "residuals": {
+     "objective": 5494.6718735592285,
+     "dual_objective": 2500700156365.139,
+     "rel_primal": 0.0027006949580525574,
+     "rel_dual": 46.08670902394647,
+     "rel_gap": 0.9999999956050933,
+     "max_rel": 46.08670902394647,
+     "primal_res": 2.8875137896526146,
+     "dual_res": 65222.7311848851,
+     "gap": 2500700150870.4673
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "361x460 vs 361x460"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.000e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "1.147e-01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "3.560e-09"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 159.4255359000017
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.05125350000162143
+   }
+  },
+  {
+   "instance": "pilot4i",
+   "nirnay": {
+    "rows": 410,
+    "cols": 1000,
+    "nnz": 5141,
+    "read_time": 0.038720199998351745,
+    "solve_time": 181.169129300004,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "pdhg",
+    "backend": "numpy",
+    "reason": "fallback: simplex did not finish",
+    "ladder": [
+     "simplex",
+     "ipm",
+     "pdhg"
+    ],
+    "iterations": 106496,
+    "residuals": {
+     "objective": -2.0088818009917353e-08,
+     "dual_objective": 96546330254805.64,
+     "rel_primal": 0.0004242049073199416,
+     "rel_dual": 1090480.1613303008,
+     "rel_gap": 0.9999999999999897,
+     "max_rel": 1090480.1613303008,
+     "primal_res": 42.28693501178851,
+     "dual_res": 3313988.838925688,
+     "gap": 96546330254805.64
+    },
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "410x1000 vs 410x1000"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.000e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "2.258e+01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "7.175e-07"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 184.9583386000013
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.015611199996783398
+   }
+  },
+  {
+   "instance": "qual",
+   "nirnay": {
+    "error": "killed at hard wall 240s",
+    "wall": 241.1190751999966
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.054362399998353794
+   }
+  },
+  {
+   "instance": "reactor",
+   "nirnay": {
+    "rows": 318,
+    "cols": 637,
+    "nnz": 2420,
+    "read_time": 0.019492100000206847,
+    "solve_time": 206.80514300000505,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "318 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 836,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "318x637 vs 318x637"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 5.779e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "3.461e-01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 210.99451240000053
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.0077448000010917895
+   }
+  },
+  {
+   "instance": "refinery",
+   "nirnay": {
+    "rows": 323,
+    "cols": 464,
+    "nnz": 1626,
+    "read_time": 0.018893000000389293,
+    "solve_time": 95.11258349999844,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "323 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 582,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "323x464 vs 323x464"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 3.035e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "4.015e+00"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "3.126e-15"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 99.48682239999471
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.015974500005540904
+   }
+  },
+  {
+   "instance": "vol1",
+   "nirnay": {
+    "rows": 323,
+    "cols": 464,
+    "nnz": 1646,
+    "read_time": 0.01635819999501109,
+    "solve_time": 45.08890130000509,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "323 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 708,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "323x464 vs 323x464"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.057e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "3.233e-02"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "2.114e-17"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 48.24803589999647
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.017618599995330442
+   }
+  },
+  {
+   "instance": "woodinfe",
+   "nirnay": {
+    "rows": 35,
+    "cols": 89,
+    "nnz": 140,
+    "read_time": 0.004527700002654456,
+    "solve_time": 0.511023799997929,
+    "verdict": "infeasible",
+    "status": "infeasible",
+    "objective": null,
+    "engine": "simplex",
+    "backend": "numpy",
+    "reason": "35 rows <= 600: exact vertex solution is cheap",
+    "ladder": null,
+    "iterations": 93,
+    "residuals": {},
+    "verified": true,
+    "verify_checks": [
+     [
+      "model size matches certificate",
+      true,
+      "35x89 vs 35x89"
+     ],
+     [
+      "ray is non-zero",
+      true,
+      "||y|| = 1.414e+00"
+     ],
+     [
+      "Farkas value is positive",
+      true,
+      "1.061e+01"
+     ],
+     [
+      "sign rules hold (violation << value)",
+      true,
+      "0.000e+00"
+     ]
+    ],
+    "provenance_clean": true,
+    "wall": 3.463427899994713
+   },
+   "highs": {
+    "status": "Infeasible",
+    "objective": null,
+    "time": 0.001340699993306771
+   }
+  }
+ ]
+}
