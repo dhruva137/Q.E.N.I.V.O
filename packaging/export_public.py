@@ -84,6 +84,8 @@ def _should_skip(path: Path) -> bool:
     rel = path.relative_to(ROOT).as_posix()
     if is_private_rel(rel):
         return True
+    if path.is_dir() and path.name.startswith(".") and path.name != ".github":
+        return True
     parts = path.parts
     for p in parts:
         if p in SKIP_DIRS or p.endswith(".egg-info"):
@@ -121,7 +123,41 @@ def copy_public_tree(out: Path) -> int:
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
             n += 1
+    _drop_unpublished_toplevel(out)
     return n
+
+
+def _drop_unpublished_toplevel(tree: Path) -> None:
+    """The published tree is already the public package.
+
+    Top-level directories that were left out of the copy are removed from the
+    published archive rules and from the published path list, so those names
+    are not carried in the public repository. Module-level private paths stay
+    listed, and the two lists still match.
+    """
+    drop = {
+        p.rstrip("/")
+        for p in PRIVATE_PATHS
+        if "/" not in p.rstrip("/") and not p.endswith("*")
+    }
+    attrs = tree / ".gitattributes"
+    if attrs.is_file():
+        kept: list[str] = []
+        for line in attrs.read_text(encoding="utf-8").splitlines(keepends=True):
+            stripped = line.strip()
+            token = ""
+            if stripped and not stripped.startswith("#"):
+                token = stripped.split()[0].rstrip("/")
+            if token in drop:
+                continue
+            kept.append(line)
+        attrs.write_text("".join(kept), encoding="utf-8")
+    listing = tree / "packaging" / "private_paths.py"
+    if listing.is_file():
+        text = listing.read_text(encoding="utf-8")
+        for name in sorted(drop):
+            text = text.replace(f'    "{name}",\n', "")
+        listing.write_text(text, encoding="utf-8")
 
 
 # Files that intentionally document or load the Pro entry-point group.

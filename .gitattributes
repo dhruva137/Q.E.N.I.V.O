@@ -19,9 +19,7 @@ data/mrpl/ export-ignore
 data/twin/ export-ignore
 bench/instances/mrpl/ export-ignore
 
-# Internal team material and work in progress (clone the repo to get them; a ZIP download omits them).
-CLAUDE_INSTRUCTION_MANUAL/ export-ignore
-CURSOR_PROGRAM/ export-ignore
+# Unfinished work stays out of a ZIP download.
 wip/ export-ignore
 
 # W02 tests follow their modules out of the public tree.
