@@ -105,10 +105,12 @@ differentiation, filter line-search IPM and McCormick spatial branch and bound f
 
 ## Install
 
+Not on PyPI yet; a PyPI release is planned. For now, install from the repository:
+
 ```bash
-pip install qenivo                  # CPU (NumPy + SciPy only)
-pip install "qenivo[gpu]"           # with CUDA 12 (CuPy)
-pip install "qenivo[server]"        # REST server and planner console
+pip install "qenivo @ git+https://github.com/dhruva137/Q.E.N.I.V.O.git"                  # CPU (NumPy + SciPy only)
+pip install "qenivo[gpu] @ git+https://github.com/dhruva137/Q.E.N.I.V.O.git"           # with CUDA 12 (CuPy)
+pip install "qenivo[server] @ git+https://github.com/dhruva137/Q.E.N.I.V.O.git"        # REST server and planner console
 ```
 
 The native C++ cores are compiled on the target at first use with the machine's C++ compiler (g++, clang++
