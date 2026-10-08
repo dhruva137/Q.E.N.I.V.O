@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "qenivo"
 dynamic = ["version"]
 description = "Sovereign, certified optimisation engine for LP, MILP and convex QP, with GPU-batched what-if planning"
-readme = "README.md"
+readme = "PYPI.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSE"]

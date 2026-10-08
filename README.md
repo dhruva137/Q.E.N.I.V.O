@@ -7,6 +7,8 @@
 A certified optimisation engine for LP, MILP and convex QP, written from the published mathematics,
 with GPU-batched what-if planning for refineries and other process industries.
 
+Part of Paper To Anything (https://papertoanything.com) — research software developed and maintained by Dhruva P Gowda. In development.
+
 [![CI](https://github.com/dhruva137/Q.E.N.I.V.O/actions/workflows/ci.yml/badge.svg)](https://github.com/dhruva137/Q.E.N.I.V.O/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
@@ -234,3 +236,7 @@ implements; the key ones are:
 ## Licence
 
 Apache-2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+## Origin
+
+Development started in 2026 in response to Smart India Hackathon problem statement 26119, as Team Epoch Zero's entry. It continues as an independent research project.
